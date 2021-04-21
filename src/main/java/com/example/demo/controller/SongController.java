@@ -16,7 +16,7 @@ public class SongController {
     @Autowired
     private ISongService songService;
 
-    @RequestMapping("/songs")
+    @RequestMapping(value = "/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Song>> getAllSong() {
         List<Song> songList = songService.getAll();
         if (songList.isEmpty()) {
