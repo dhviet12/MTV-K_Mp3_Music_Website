@@ -1,6 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.model.user;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.example.demo.model.PlayList;
 
 import javax.persistence.*;
 import java.util.List;
