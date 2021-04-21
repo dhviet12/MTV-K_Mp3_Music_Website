@@ -13,6 +13,7 @@ public class UserPrinciple implements UserDetails {
         return null;
     }
 
+
     @Override
     public String getPassword() {
         return user.getPassword();
