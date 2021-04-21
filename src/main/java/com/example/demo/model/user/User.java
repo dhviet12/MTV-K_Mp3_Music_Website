@@ -1,31 +1,48 @@
 package com.example.demo.model.user;
 
 import com.example.demo.model.PlayList;
+import net.minidev.json.annotate.JsonIgnore;
+
+import javax.validation.constraints.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Size(min = 6, max = 20)
     private String username;
+
+    @NotBlank
+    @Size(min = 8, max = 30)
     private String password;
+    @NotBlank
     private String fullName;
+    @Size(max = 60)
     private String address;
+    @Email
     private String email;
+
     private String phone;
     private String avatar;
-    @ManyToOne
-    private Role role;
+    @ManyToMany
+    @JsonIgnore
+    private Set<Role> roles = new HashSet<>();
+
     @OneToMany
     private List<PlayList> playList;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String fullName, String address, String email, String phone, String avatar, Role role, List<PlayList> playList) {
+    public User(Long id, @NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone, String avatar, Set<Role> roles, List<PlayList> playList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -34,7 +51,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.avatar = avatar;
-        this.role = role;
+        this.roles = roles;
         this.playList = playList;
     }
 
@@ -102,12 +119,12 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public List<PlayList> getPlayList() {
