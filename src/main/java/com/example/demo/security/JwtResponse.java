@@ -18,6 +18,13 @@ public class JwtResponse {
         this.roles = roles;
     }
 
+    public JwtResponse(Long id, String token, String username, Collection<? extends GrantedAuthority> roles) {
+        this.id = id;
+        this.token = token;
+        this.username = username;
+        this.roles = roles;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,4 +64,6 @@ public class JwtResponse {
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
     }
+
+
 }
