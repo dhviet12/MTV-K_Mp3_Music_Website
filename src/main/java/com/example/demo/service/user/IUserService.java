@@ -14,4 +14,6 @@ public interface IUserService {
     void remove(Long id);
 
     boolean existsByUsername(String username);
+
+    User findUserByUserName(String username);
 }
