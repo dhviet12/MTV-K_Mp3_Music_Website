@@ -53,4 +53,27 @@ public class SongController {
         songService.deleteSong(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
+
+    //Tìm kiếm theo tên bài hát
+    @GetMapping(value = "/search-song/{nameSong}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Song> searchNameSong(@PathVariable String nameSong) {
+        String name = "%" + nameSong + "%";
+        songService.findAllByNameSong(name);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Nghe nhiều
+    @GetMapping(value = "/top10SongsNew", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Song> top10SongsNew() {
+        songService.findAllByCreationTimeOrderByCreationTime();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Top view
+    @GetMapping(value = "/top10SongsView", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Song> top10SongsView() {
+        songService.findAllByNumberOfViewOrderByNumberOfView();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
