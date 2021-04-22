@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CommentOfSong;
+import com.example.demo.model.Song;
+import com.example.demo.model.user.User;
+import com.example.demo.service.ISongService;
+import com.example.demo.service.SongServiceImp;
 import com.example.demo.service.commentSong.ICommentSongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,11 @@ public class CommentSongController {
     @Autowired
     ICommentSongService commentSongService;
 
+    @Autowired
+    SongServiceImp songServiceImp;
+
+
+
     @GetMapping("")
     public ResponseEntity<List<CommentOfSong>>list(){
         List<CommentOfSong> commentOfSong = commentSongService.findAll();
@@ -24,16 +33,45 @@ public class CommentSongController {
     }
 
     @PostMapping("/post")
-    public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong){
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong,@PathVariable Long id){
+        Song song = songServiceImp.findById(id);
+        commentOfSong.setSong(song);
+        commentSongService.save(commentOfSong);
+        return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<CommentOfSong>postComment(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id ,@PathVariable String username){
+    public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id ,@PathVariable String username){
         commentOfSong.setId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Song song = songServiceImp.findById(id);
+//        User user =
+        String users = commentSongService.findById(id).getUser().getUsername();
+        boolean song1= song.getNameSong().equals(users);
+        if (song1){
+            commentOfSong.setSong(song);
+//            commentOfSong.setUser();
+            commentSongService.save(commentOfSong);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
+        Song song = songServiceImp.findById(id);
+//        User user =
+        String users = commentSongService.findById(id).getUser().getUsername();
+        boolean song1= song.getNameSong().equals(users);
+        if (song1){
+            commentSongService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+
 
 
 
