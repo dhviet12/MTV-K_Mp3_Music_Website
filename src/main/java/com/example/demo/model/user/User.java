@@ -21,7 +21,7 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min = 8, max = 30)
+//    @Size(max = 30)
     private String password;
     @NotBlank
     private String fullName;
@@ -42,6 +42,11 @@ public class User {
     public User() {
     }
 
+    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(Long id, @NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone, String avatar, Set<Role> roles, List<PlayList> playList) {
         this.id = id;
         this.username = username;
@@ -53,6 +58,21 @@ public class User {
         this.avatar = avatar;
         this.roles = roles;
         this.playList = playList;
+    }
+
+    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, String phone) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
     }
 
     public Long getId() {
