@@ -14,7 +14,7 @@ public class CommentSongService implements ICommentSongService{
 
     @Override
     public List<CommentOfSong> findAll() {
-        return (List<CommentOfSong>) commentSongRepository.findAll();
+        return commentSongRepository.findAll();
     }
 
     @Override
