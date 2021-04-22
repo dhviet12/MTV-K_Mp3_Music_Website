@@ -1,14 +1,10 @@
-package com.example.demo.model.user;
+package com.example.demo.model.user.request;
 
 import javax.validation.constraints.*;
 
 public class LoginForm {
-    @NotBlank
-    @Size(min = 10, max = 30)
     private String username;
 
-    @NotBlank
-    @Size(min = 6, max = 8)
     private String password;
 
     public String getUsername() {

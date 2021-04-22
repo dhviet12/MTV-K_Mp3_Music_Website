@@ -3,7 +3,6 @@ package com.example.demo.service.user;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.UserPrinciple;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -47,5 +46,10 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     public void remove(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 }
