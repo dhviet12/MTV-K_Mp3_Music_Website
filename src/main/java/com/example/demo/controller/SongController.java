@@ -30,7 +30,7 @@ public class SongController {
         Song song = songService.findById(id);
         if (song == null) {
             System.out.println("Song with id : " + id + "not found");
-            return new ResponseEntity<Song>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Song>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
