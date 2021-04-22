@@ -14,7 +14,7 @@ public class SignUpForm {
 
 
     @NotBlank
-    @Size(min = 8, max = 30)
+//    @Size(max = 30)
     private String password;
 
     @NotBlank

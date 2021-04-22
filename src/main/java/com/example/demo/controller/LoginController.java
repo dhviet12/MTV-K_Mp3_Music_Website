@@ -54,7 +54,7 @@ public class LoginController {
         String jwt = jwtTokenProvider.generateJwtToken(authentication);
         UserPrinciple userDetails = (UserPrinciple) authentication.getPrincipal();
 
-        return ResponseEntity.ok(new JwtResponse(userDetails.getId(),jwt, userDetails.getUsername(),
+        return ResponseEntity.ok(new JwtResponse(userDetails.getId(), jwt, userDetails.getUsername(), userDetails.getFullName(), userDetails.getAddress(), userDetails.getPhone(), userDetails.getAvatar(),
                 userDetails.getAuthorities()
         ));
     }
@@ -67,7 +67,7 @@ public class LoginController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getUsername(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getFullName(), signUpRequest.getAddress(), signUpRequest.getEmail(), signUpRequest.getPhone());
+        User user = new User(signUpRequest.getUsername(), signUpRequest.getPassword(), signUpRequest.getFullName(), signUpRequest.getAddress(), signUpRequest.getEmail(), signUpRequest.getPhone());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         strRoles.forEach(role -> {
@@ -83,7 +83,6 @@ public class LoginController {
                     roles.add(userRole);
             }
         });
-
         user.setRoles(roles);
         userService.save(user);
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
