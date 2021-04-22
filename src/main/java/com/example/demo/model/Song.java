@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Song {
     @ManyToOne
     private Category category;
     @OneToMany
+    @JsonIgnore
     private List<Like> likes;
     @OneToMany
     private List<CommentOfSong> comments;
