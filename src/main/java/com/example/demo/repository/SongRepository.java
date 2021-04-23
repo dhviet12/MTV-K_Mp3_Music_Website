@@ -16,4 +16,5 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     @Query(value = "select * from song where song.name_song like ?", nativeQuery = true)
     List<Song> findAllByNameSong(String nameSong);
+
 }
