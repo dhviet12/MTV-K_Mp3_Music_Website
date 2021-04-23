@@ -2,6 +2,7 @@ package com.example.demo.model.user.request;
 
 import org.hibernate.validator.constraints.*;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -9,11 +10,13 @@ public class SignUpForm {
     private Long id;
 
     @NotBlank
+    @NotNull
     @Size(min = 6, max = 20)
     private String username;
 
 
     @NotBlank
+    @NotNull
 //    @Size(max = 30)
     private String password;
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface IUserService {
     void save(User user);
 
-    Optional<User> findById(Long id);
+    User findById(Long id);
 
     Iterable<User> findAll();
 
@@ -16,4 +16,5 @@ public interface IUserService {
     boolean existsByUsername(String username);
 
     User findUserByUserName(String username);
+
 }

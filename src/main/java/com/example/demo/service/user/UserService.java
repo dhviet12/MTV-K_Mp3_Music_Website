@@ -34,8 +34,8 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -57,4 +57,7 @@ public class UserService implements IUserService, UserDetailsService {
     public User findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
+
+
 }

@@ -17,10 +17,12 @@ public class User {
     private Long id;
 
     @NotBlank
+    @NotNull
     @Size(min = 6, max = 20)
     private String username;
 
     @NotBlank
+    @NotNull
 //    @Size(max = 30)
     private String password;
     @NotBlank
