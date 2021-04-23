@@ -54,10 +54,14 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
     public User findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
-
 
 
 }

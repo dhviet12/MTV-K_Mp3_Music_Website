@@ -70,6 +70,10 @@ public class LoginController {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
+        if (userService.existsByEmail(signUpRequest.getEmail())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
 
         // Creating user's account
         User user = new User(signUpRequest.getUsername(), signUpRequest.getPassword(), signUpRequest.getFullName(), signUpRequest.getAddress(), signUpRequest.getEmail(), signUpRequest.getPhone());

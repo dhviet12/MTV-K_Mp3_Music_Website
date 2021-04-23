@@ -26,6 +26,7 @@ public class SignUpForm {
     private String address;
 
     @Email
+    @NotNull
     private String email;
 
     public String getFullName() {

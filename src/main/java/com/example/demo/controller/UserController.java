@@ -14,6 +14,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
+
     @GetMapping("/profile/{id}")
     public ResponseEntity<User> showProFile(@PathVariable Long id){
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);

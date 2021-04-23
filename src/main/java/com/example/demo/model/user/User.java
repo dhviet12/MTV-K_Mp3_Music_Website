@@ -30,6 +30,7 @@ public class User {
     @Size(max = 60)
     private String address;
     @Email
+    @NotNull
     private String email;
 
     private String phone;
