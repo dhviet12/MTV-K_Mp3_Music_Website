@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.security.AuthenticationEntryPointJWT;
 import com.example.demo.security.JwtAuthenticationFilter;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AuthenticationEntryPointJWT authenticationEntryPointJWT() {
+        return new AuthenticationEntryPointJWT();
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         // Password encoder, để Spring Security sử dụng mã hóa mật khẩu người dùng
         return new BCryptPasswordEncoder();
@@ -47,14 +53,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.httpBasic().authenticationEntryPoint(authenticationEntryPointJWT());
         http
                 .cors()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/auth/**").permitAll()
+                .antMatchers("/**", "/auth/**").permitAll()
                 .anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
