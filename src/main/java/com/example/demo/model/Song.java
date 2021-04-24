@@ -14,7 +14,7 @@ public class Song {
     private String nameSong;
     private String description;
     private String fileMp3;
-    private String avatar;
+    private String fileImage;
     private String author;
     @ManyToMany
     private List<Singer> singer;
@@ -36,7 +36,7 @@ public class Song {
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
-        this.avatar = avatar;
+        this.fileImage = avatar;
         this.author = author;
         this.singer = singer;
         this.poster = poster;
@@ -78,11 +78,11 @@ public class Song {
     }
 
     public String getAvatar() {
-        return avatar;
+        return fileImage;
     }
 
     public void setAvatar(String avatar) {
-        this.avatar = avatar;
+        this.fileImage = avatar;
     }
 
     public String getAuthor() {
