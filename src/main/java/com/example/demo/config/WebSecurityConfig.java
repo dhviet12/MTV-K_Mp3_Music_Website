@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationEntryPointJWT authenticationEntryPointJWT() {
+    public AuthenticationEntryPointJWT authenticationEntryPointJWT(){
         return new AuthenticationEntryPointJWT();
     }
 
@@ -53,7 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().authenticationEntryPoint(authenticationEntryPointJWT());
@@ -62,8 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**", "/auth/**").permitAll()
-                .anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers("/**","/auth/**").permitAll()
+                .anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS );
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
