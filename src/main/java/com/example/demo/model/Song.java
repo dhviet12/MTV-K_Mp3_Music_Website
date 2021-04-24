@@ -31,12 +31,12 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String avatar, String author, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
-        this.fileImage = avatar;
+        this.fileImage = fileImage;
         this.author = author;
         this.singer = singer;
         this.poster = poster;
@@ -77,12 +77,12 @@ public class Song {
         this.fileMp3 = fileMp3;
     }
 
-    public String getAvatar() {
+    public String getFileImage() {
         return fileImage;
     }
 
-    public void setAvatar(String avatar) {
-        this.fileImage = avatar;
+    public void setFileImage(String fileImage) {
+        this.fileImage = fileImage;
     }
 
     public String getAuthor() {
