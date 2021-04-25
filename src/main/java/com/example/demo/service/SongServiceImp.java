@@ -29,4 +29,19 @@ public class SongServiceImp implements ISongService{
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }
+
+    @Override
+    public List<Song> findAllByCreationTimeOrderByCreationTime() {
+        return songRepository.findAllByCreationTimeOrderByCreationTime();
+    }
+
+    @Override
+    public List<Song> findAllByNumberOfViewOrderByNumberOfView() {
+        return songRepository.findAllByNumberOfViewOrderByNumberOfView();
+    }
+
+    @Override
+    public List<Song> findAllByNameSong(String nameSong) {
+        return songRepository.findAllByNameSong(nameSong);
+    }
 }
