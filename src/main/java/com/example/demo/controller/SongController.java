@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Song;
 import com.example.demo.service.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -55,25 +56,25 @@ public class SongController {
     }
 
     //Tìm kiếm theo tên bài hát
-    @GetMapping(value = "/search-song/{nameSong}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Song> searchNameSong(@PathVariable String nameSong) {
-        String name = "%" + nameSong + "%";
-        songService.findAllByNameSong(name);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping(value = "/search-song", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Song>> searchNameSong(@RequestParam String name) {
+        String nameSong = "%" + name + "%";
+        List<Song> songList = songService.findAllByNameSong(nameSong);
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
     //Nghe nhiều
     @GetMapping(value = "/top10SongsNew", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Song> top10SongsNew() {
-        songService.findAllByCreationTimeOrderByCreationTime();
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<List<Song>> top10SongsNew() {
+        List<Song> songList = songService.findAllByCreationTimeOrderByCreationTime();
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
     //Top view
     @GetMapping(value = "/top10SongsView", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Song> top10SongsView() {
-        songService.findAllByNumberOfViewOrderByNumberOfView();
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity< List<Song>> top10SongsView() {
+        List<Song> songList = songService.findAllByNumberOfViewOrderByNumberOfView();
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
 }
