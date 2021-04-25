@@ -2,8 +2,10 @@ package com.example.demo.model;
 
 import com.example.demo.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
