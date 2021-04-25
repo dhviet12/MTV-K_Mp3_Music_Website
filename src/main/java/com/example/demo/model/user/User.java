@@ -17,17 +17,20 @@ public class User {
     private Long id;
 
     @NotBlank
+    @NotNull
     @Size(min = 6, max = 20)
     private String username;
 
     @NotBlank
-//    @Size(max = 30)
+    @NotNull
+    @Size(min = 6, max = 20)
     private String password;
     @NotBlank
     private String fullName;
     @Size(max = 60)
     private String address;
     @Email
+    @NotNull
     private String email;
 
     private String phone;

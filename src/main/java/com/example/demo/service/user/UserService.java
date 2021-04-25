@@ -4,13 +4,14 @@ import com.example.demo.model.user.User;
 import com.example.demo.model.user.UserPrinciple;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
+
 
 @Service
 public class UserService implements IUserService, UserDetailsService {
@@ -29,13 +30,13 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+       return userRepository.save(user);
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -54,7 +55,29 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
     public User findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public User getCurrentUser() {
+        User user;
+        String userName;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        user = this.findUserByUserName(userName);
+        return user;
+    }
+
+
 }
