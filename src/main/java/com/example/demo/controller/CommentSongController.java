@@ -32,10 +32,10 @@ public class CommentSongController {
         return new ResponseEntity(commentOfSong, HttpStatus.OK);
     }
 
-    @PostMapping("/post")
+    @PostMapping("/create")
     public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong,@PathVariable Long id){
-        Song song = songServiceImp.findById(id);
-        commentOfSong.setSong(song);
+//        Song song = songServiceImp.findById(id);
+//        commentOfSong.setSong(song);
         commentSongService.save(commentOfSong);
         return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
     }
@@ -43,35 +43,33 @@ public class CommentSongController {
     @PostMapping("/edit/{id}")
     public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id ,@PathVariable String username){
         commentOfSong.setId(id);
-        Song song = songServiceImp.findById(id);
+//        Song song = songServiceImp.findById(id);
 //        User user =
-        String users = commentSongService.findById(id).getUser().getUsername();
-        boolean song1= song.getNameSong().equals(users);
-        if (song1){
-            commentOfSong.setSong(song);
-//            commentOfSong.setUser();
+//        String users = commentSongService.findById(id).getUser().getUsername();
+//        boolean song1= song.getNameSong().equals(users);
+//        if (song1){
+//            commentOfSong.setSong(song);
+////            commentOfSong.setUser();
             commentSongService.save(commentOfSong);
             return new ResponseEntity<>(HttpStatus.OK);
-        }else
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+//        }else
+//            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/delete/{id}")
     public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
         Song song = songServiceImp.findById(id);
 //        User user =
-        String users = commentSongService.findById(id).getUser().getUsername();
-        boolean song1= song.getNameSong().equals(users);
-        if (song1){
+//        String users = commentSongService.findById(id).getUser().getUsername();
+//        boolean song1= song.getNameSong().equals(users);
+//        if (song1){
             commentSongService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-        }
+//        }else {
+//            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+//        }
 
     }
-
-
 
 
 
