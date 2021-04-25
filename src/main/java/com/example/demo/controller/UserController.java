@@ -21,11 +21,11 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
-//    @PutMapping("/profile/{id}")
-//    public ResponseEntity<User> editProFile(@PathVariable Long id, @RequestBody User user){
-//        user.setId(id);
-//        return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
-//    }
+    @PutMapping("/profile/{id}")
+    public ResponseEntity<User> editProFile(@PathVariable Long id, @RequestBody User user){
+        user.setId(id);
+        return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
+    }
 
 
 

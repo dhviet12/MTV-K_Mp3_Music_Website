@@ -54,8 +54,9 @@ public class LoginController {
 
         String jwt = jwtTokenProvider.generateJwtToken(authentication);
         UserPrinciple userDetails = (UserPrinciple) authentication.getPrincipal();
+        User currentUser = userService.getCurrentUser();
 
-        return ResponseEntity.ok(new JwtResponse(userDetails.getId(), jwt, userDetails.getUsername(), userDetails.getFullName(), userDetails.getAddress(), userDetails.getPhone(), userDetails.getAvatar(),
+        return ResponseEntity.ok(new JwtResponse(currentUser.getId(), jwt, currentUser.getUsername(), userDetails.getFullName(), userDetails.getAddress(), userDetails.getPhone(), userDetails.getAvatar(),
                 userDetails.getAuthorities()
         ));
     }
@@ -67,11 +68,11 @@ public class LoginController {
         }
 
         if (userService.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
+            return new ResponseEntity<>(new ResponseMessage("Existed Username"),
                     HttpStatus.BAD_REQUEST);
         }
         if (userService.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"),
+            return new ResponseEntity<>(new ResponseMessage("Existed Email"),
                     HttpStatus.BAD_REQUEST);
         }
 
