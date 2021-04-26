@@ -4,7 +4,6 @@ import com.example.demo.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ public class Song {
     private String nameSong;
     private String description;
     private String fileMp3;
-    private String avatar;
+    private String fileImage;
     private String author;
 
     @ManyToMany(mappedBy = "songs")
@@ -33,12 +32,12 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String avatar, String author, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
-        this.avatar = avatar;
+        this.fileImage = fileImage;
         this.author = author;
         this.singer = singer;
         this.poster = poster;
@@ -79,12 +78,12 @@ public class Song {
         this.fileMp3 = fileMp3;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getFileImage() {
+        return fileImage;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setFileImage(String fileImage) {
+        this.fileImage = fileImage;
     }
 
     public String getAuthor() {

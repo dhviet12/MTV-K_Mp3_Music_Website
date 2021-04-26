@@ -39,7 +39,7 @@ public class SongController {
     @PostMapping(value = "/create-song", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
         songService.save(song);
-        return new ResponseEntity<>(song, HttpStatus.CREATED);
+        return new ResponseEntity<Song>(song, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit-song/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
