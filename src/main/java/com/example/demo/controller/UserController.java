@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.user.User;
+import com.example.demo.model.user.response.ResponseMessage;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,11 @@ public class UserController {
     UserService userService;
 
 
-
     @GetMapping("/profile/{id}")
-    public ResponseEntity<User> showProFile(@PathVariable Long id){
+    public ResponseEntity<?> showProFile(@PathVariable Long id){
+        if(userService.findById(id) == null){
+            return new ResponseEntity<>(new ResponseMessage("Not found"),HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
