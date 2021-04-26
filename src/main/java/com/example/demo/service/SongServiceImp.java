@@ -34,7 +34,7 @@ public class SongServiceImp implements ISongService {
 
     @Override
     public List<Song> findAllByCreationTimeOrderByCreationTime() {
-        return songRepository.findAllByCreationTimeOrderByCreationTime();
+        return songRepository.findAllByCreatedTimeOrderByCreatedTime();
     }
 
     @Override
