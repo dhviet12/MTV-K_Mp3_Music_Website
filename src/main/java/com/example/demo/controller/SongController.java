@@ -36,7 +36,7 @@ public class SongController {
         Song song = songService.findById(id);
         if (song == null) {
             System.out.println("Song with id : " + id + "not found");
-            return new ResponseEntity<Song>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class SongController {
         User createdBy = userService.getCurrentUser();
         song.setCreateBy(createdBy);
         songService.save(song);
-        return new ResponseEntity<Song>(song, HttpStatus.CREATED);
+        return new ResponseEntity<>(song, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit-song/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,7 +63,7 @@ public class SongController {
     @DeleteMapping(value = "/delete-song/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteSong(@PathVariable Long id) {
         songService.deleteSong(id);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     //Tìm kiếm theo tên bài hát
