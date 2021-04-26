@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SongServiceImp implements ISongService{
+public class SongServiceImp implements ISongService {
+
     @Autowired
     private SongRepository songRepository;
+
     @Override
     public List<Song> getAll() {
         return songRepository.findAll();
@@ -28,5 +30,20 @@ public class SongServiceImp implements ISongService{
     @Override
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Song> findAllByCreationTimeOrderByCreationTime() {
+        return songRepository.findAllByCreationTimeOrderByCreationTime();
+    }
+
+    @Override
+    public List<Song> findAllByNumberOfViewOrderByNumberOfView() {
+        return songRepository.findAllByNumberOfViewOrderByNumberOfView();
+    }
+
+    @Override
+    public List<Song> findAllByNameSong(String nameSong) {
+        return songRepository.findAllByNameSong(nameSong);
     }
 }
