@@ -39,7 +39,7 @@ public class SongController {
     @PostMapping(value = "/create-song", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
         songService.save(song);
-        return new ResponseEntity<>(song, HttpStatus.CREATED);
+        return new ResponseEntity<Song>(song, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit-song/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,14 +64,14 @@ public class SongController {
     }
 
     //Nghe nhiều
-    @GetMapping(value = "/top10SongsNew", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/top10songsnew", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Song>> top10SongsNew() {
         List<Song> songList = songService.findAllByCreationTimeOrderByCreationTime();
         return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
     //Top view
-    @GetMapping(value = "/top10SongsView", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/top10songsview", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity< List<Song>> top10SongsView() {
         List<Song> songList = songService.findAllByNumberOfViewOrderByNumberOfView();
         return new ResponseEntity<>(songList, HttpStatus.OK);
