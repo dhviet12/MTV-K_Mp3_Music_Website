@@ -11,7 +11,6 @@ public class SongServiceImp implements ISongService {
 
     @Autowired
     private SongRepository songRepository;
-
     @Override
     public List<Song> getAll() {
         return songRepository.findAll();
@@ -34,7 +33,7 @@ public class SongServiceImp implements ISongService {
 
     @Override
     public List<Song> findAllByCreationTimeOrderByCreationTime() {
-        return songRepository.findAllByCreationTimeOrderByCreationTime();
+        return songRepository.findAllByCreatedTimeOrderByCreatedTime();
     }
 
     @Override
