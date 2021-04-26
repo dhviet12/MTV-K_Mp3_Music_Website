@@ -11,12 +11,17 @@ public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nameSong;
+    @Column(length = 6000)
     private String description;
+    @Column(nullable = false)
     private String fileMp3;
+    @Column(nullable = false)
     private String avatar;
+    @Column(nullable = false)
     private String author;
-    @ManyToMany
+    @ManyToMany(mappedBy = "songs")
     private List<Singer> singer;
     @ManyToOne
     private User poster;

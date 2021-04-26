@@ -71,7 +71,7 @@ public class SongController {
     }
 
     //Top view
-    @GetMapping(value = "/top10SongsView", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity< List<Song>> top10SongsView() {
         List<Song> songList = songService.findAllByNumberOfViewOrderByNumberOfView();
         return new ResponseEntity<>(songList, HttpStatus.OK);
