@@ -31,4 +31,9 @@ public class CommentSongService implements ICommentSongService{
     public void delete(Long id) {
         commentSongRepository.deleteById(id);
     }
+
+    @Override
+    public List<CommentOfSong> getAllBySongId(Long id) {
+        return commentSongRepository.findAllBySongId(id);
+    }
 }

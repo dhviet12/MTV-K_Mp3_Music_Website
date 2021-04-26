@@ -30,10 +30,10 @@ public class CommentSongController {
 
 
 
-    @GetMapping("")
-    public ResponseEntity<List<CommentOfSong>>list(){
-        List<CommentOfSong> commentOfSong = commentSongService.findAll();
-        return new ResponseEntity(commentOfSong, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<List<CommentOfSong>> list(@PathVariable Long id){
+        List<CommentOfSong> commentOfSong = commentSongService.getAllBySongId(id);
+        return new ResponseEntity<>(commentOfSong, HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -72,10 +72,10 @@ public class CommentSongController {
 
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CommentOfSong>detail(@PathVariable Long id){
-        CommentOfSong commentOfSong = commentSongService.findById(id);
-        return  new ResponseEntity<>(commentOfSong,HttpStatus.OK);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<CommentOfSong> detail(@PathVariable Long id){
+//        CommentOfSong commentOfSong = commentSongService.findById(id);
+//        return  new ResponseEntity<>(commentOfSong,HttpStatus.OK);
+//    }
 
 }
