@@ -4,6 +4,7 @@ import com.example.demo.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,12 +12,22 @@ public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nameSong;
+    @Column(length = 6000)
     private String description;
+    @Column(nullable = false)
     private String fileMp3;
+    @Column(nullable = false)
     private String avatar;
+    @Column(nullable = false)
     private String author;
-    @ManyToMany
+    @Column(nullable = false)
+    private Date creationTime;
+    @Column(nullable = false)
+    private Long numberOfView;
+
+    @ManyToMany(mappedBy = "songs")
     private List<Singer> singer;
     @ManyToOne
     private User poster;
@@ -31,13 +42,15 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String avatar, String author, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String avatar, String author, Date creationTime, Long numberOfView, List<Singer> singer, User poster, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
         this.avatar = avatar;
         this.author = author;
+        this.creationTime = creationTime;
+        this.numberOfView = numberOfView;
         this.singer = singer;
         this.poster = poster;
         this.category = category;
@@ -91,6 +104,22 @@ public class Song {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public Long getNumberOfView() {
+        return numberOfView;
+    }
+
+    public void setNumberOfView(Long numberOfView) {
+        this.numberOfView = numberOfView;
     }
 
     public List<Singer> getSinger() {

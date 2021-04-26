@@ -64,7 +64,7 @@ public class SongController {
     }
 
     //Nghe nhiều
-    @GetMapping(value = "/top10SongsNew", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/top10songsnew", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Song>> top10SongsNew() {
         List<Song> songList = songService.findAllByCreationTimeOrderByCreationTime();
         return new ResponseEntity<>(songList, HttpStatus.OK);
