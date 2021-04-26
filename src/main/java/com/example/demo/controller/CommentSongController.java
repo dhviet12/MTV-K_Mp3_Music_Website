@@ -39,8 +39,6 @@ public class CommentSongController {
     @PostMapping("/create")
     public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong){
         User user = userService.getCurrentUser();
-//        Song song = songServiceImp.findById(id);
-//        commentOfSong.setSong(song);
         commentOfSong.setUser(user);
         commentSongService.save(commentOfSong);
         return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
@@ -61,9 +59,10 @@ public class CommentSongController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
-        String user = String.valueOf(userService.getCurrentUser());
-        String users = commentSongService.findById(id).getUser().getUsername();
-        boolean us = users.equals(user);
+        CommentOfSong commentOfSong = commentSongService.findById(id);
+        User user = userService.getCurrentUser();
+        String username = user.getUsername();
+        boolean us = username.equalsIgnoreCase(commentOfSong.getUser().getUsername());
         if (us){
             commentSongService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
