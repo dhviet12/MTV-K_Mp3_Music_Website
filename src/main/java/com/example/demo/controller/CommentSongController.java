@@ -6,6 +6,7 @@ import com.example.demo.model.user.User;
 import com.example.demo.service.ISongService;
 import com.example.demo.service.SongServiceImp;
 import com.example.demo.service.commentSong.ICommentSongService;
+import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class CommentSongController {
     @Autowired
     SongServiceImp songServiceImp;
 
+    @Autowired
+    IUserService userService;
+
 
 
     @GetMapping("")
@@ -34,8 +38,10 @@ public class CommentSongController {
 
     @PostMapping("/create")
     public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong){
+        User user = userService.getCurrentUser();
 //        Song song = songServiceImp.findById(id);
 //        commentOfSong.setSong(song);
+        commentOfSong.setUser(user);
         commentSongService.save(commentOfSong);
         return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
     }
@@ -43,31 +49,27 @@ public class CommentSongController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id){
         commentOfSong.setId(id);
-//        Song song = songServiceImp.findById(id);
-//        User user =
-//        String users = commentSongService.findById(id).getUser().getUsername();
-//        boolean song1= song.getNameSong().equals(users);
-//        if (song1){
-//            commentOfSong.setSong(song);
-////            commentOfSong.setUser();
+        String user = String.valueOf(userService.getCurrentUser());
+        String users = commentSongService.findById(id).getUser().getUsername();
+        boolean us= users.equals(user);
+        if (us){
             commentSongService.save(commentOfSong);
             return new ResponseEntity<>(HttpStatus.OK);
-//        }else
-//            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }else
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
-//        Song song = songServiceImp.findById(id);
-//        User user =
-//        String users = commentSongService.findById(id).getUser().getUsername();
-//        boolean song1= song.getNameSong().equals(users);
-//        if (song1){
+        String user = String.valueOf(userService.getCurrentUser());
+        String users = commentSongService.findById(id).getUser().getUsername();
+        boolean us = users.equals(user);
+        if (us){
             commentSongService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
-//        }else {
-//            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-//        }
+        }else {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
 
     }
 
