@@ -11,7 +11,6 @@ public class SongServiceImp implements ISongService {
 
     @Autowired
     private SongRepository songRepository;
-
     @Override
     public List<Song> getAll() {
         return songRepository.findAll();
