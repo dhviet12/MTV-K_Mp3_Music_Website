@@ -33,15 +33,15 @@ public class CommentSongController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong,@PathVariable Long id){
+    public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong){
 //        Song song = songServiceImp.findById(id);
 //        commentOfSong.setSong(song);
         commentSongService.save(commentOfSong);
         return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
     }
 
-    @PostMapping("/edit/{id}")
-    public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id ,@PathVariable String username){
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id){
         commentOfSong.setId(id);
 //        Song song = songServiceImp.findById(id);
 //        User user =
@@ -56,9 +56,9 @@ public class CommentSongController {
 //            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
-        Song song = songServiceImp.findById(id);
+//        Song song = songServiceImp.findById(id);
 //        User user =
 //        String users = commentSongService.findById(id).getUser().getUsername();
 //        boolean song1= song.getNameSong().equals(users);
@@ -71,6 +71,10 @@ public class CommentSongController {
 
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<CommentOfSong>detail(@PathVariable Long id){
+        CommentOfSong commentOfSong = commentSongService.findById(id);
+        return  new ResponseEntity<>(commentOfSong,HttpStatus.OK);
+    }
 
 }
