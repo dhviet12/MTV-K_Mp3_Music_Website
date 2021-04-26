@@ -17,8 +17,11 @@ public class Song {
     private String fileMp3;
     private String fileImage;
     private String author;
+    @Column(nullable = false)
     private Timestamp createdTime;
     private Timestamp updatedTime;
+    @Column(nullable = false)
+    private Long numberOfView;
     @ManyToMany(mappedBy = "songs")
     private List<Singer> singer;
     @ManyToOne
@@ -34,7 +37,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
@@ -43,8 +46,9 @@ public class Song {
         this.author = author;
         this.createdTime = createdTime;
         this.updatedTime = updatedTime;
+        this.numberOfView = numberOfView;
         this.singer = singer;
-        this.CreateBy = createBy;
+        CreateBy = createBy;
         this.category = category;
         this.likes = likes;
         this.comments = comments;
@@ -112,6 +116,14 @@ public class Song {
 
     public void setUpdatedTime(Timestamp updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public Long getNumberOfView() {
+        return numberOfView;
+    }
+
+    public void setNumberOfView(Long numberOfView) {
+        this.numberOfView = numberOfView;
     }
 
     public List<Singer> getSinger() {

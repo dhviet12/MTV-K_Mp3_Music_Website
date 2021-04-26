@@ -9,8 +9,10 @@ import java.util.List;
 
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long> {
-    @Query(value = "select * from song order by creation_time desc limit 10", nativeQuery = true)
-    List<Song> findAllByCreationTimeOrderByCreationTime();
+    //Top 10 bai hat moi nhat
+    @Query(value = "select * from song order by created_time desc limit 10", nativeQuery = true)
+    List<Song> findAllByCreatedTimeOrderByCreatedTime();
+    //Top 10 bai hat theo luot xem
     @Query(value = "select * from song order by number_of_view desc limit 10", nativeQuery = true)
     List<Song> findAllByNumberOfViewOrderByNumberOfView();
 
