@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -11,8 +12,10 @@ public class CommentOfSong {
     private Long id;
     private String content;
     @ManyToOne
+    @JsonIgnore
     private User user;
     @ManyToOne
+//    @JsonIgnore
     private Song song;
 
     public CommentOfSong() {
