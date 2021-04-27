@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.comment;
 
 import com.example.demo.model.comment.CommentOfSong;
 import com.example.demo.model.user.User;
