@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.comment;
 
 import com.example.demo.model.comment.CommentOfSong;
 import org.springframework.data.jpa.repository.JpaRepository;
