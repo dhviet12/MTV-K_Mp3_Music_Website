@@ -3,7 +3,7 @@ package com.example.demo.model;
 import com.example.demo.model.user.User;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -15,20 +15,20 @@ public class PlayList {
     @OneToMany
     private List<Song> songs;
     private String kindOfMusic;
-    private Date timeCreate;
+    private Timestamp timeCreate;
     private String description;
     @ManyToOne
     private User user;
-    private Date timeUpdate;
+    private Timestamp timeUpdate;
     private int view;
 
     public PlayList() {
     }
 
-    public PlayList(Long id, String name, List<Song> song, String kindOfMusic, Date timeCreate, String description, User user, Date timeUpdate, int view) {
+    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, User user, Timestamp timeUpdate, int view) {
         this.id = id;
         this.name = name;
-        this.songs = song;
+        this.songs = songs;
         this.kindOfMusic = kindOfMusic;
         this.timeCreate = timeCreate;
         this.description = description;
@@ -53,12 +53,12 @@ public class PlayList {
         this.name = name;
     }
 
-    public List<Song> getSong() {
+    public List<Song> getSongs() {
         return songs;
     }
 
-    public void setSong(List<Song> song) {
-        this.songs = song;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public String getKindOfMusic() {
@@ -69,11 +69,11 @@ public class PlayList {
         this.kindOfMusic = kindOfMusic;
     }
 
-    public Date getTimeCreate() {
+    public Timestamp getTimeCreate() {
         return timeCreate;
     }
 
-    public void setTimeCreate(Date timeCreate) {
+    public void setTimeCreate(Timestamp timeCreate) {
         this.timeCreate = timeCreate;
     }
 
@@ -93,11 +93,11 @@ public class PlayList {
         this.user = user;
     }
 
-    public Date getTimeUpdate() {
+    public Timestamp getTimeUpdate() {
         return timeUpdate;
     }
 
-    public void setTimeUpdate(Date timeUpdate) {
+    public void setTimeUpdate(Timestamp timeUpdate) {
         this.timeUpdate = timeUpdate;
     }
 
