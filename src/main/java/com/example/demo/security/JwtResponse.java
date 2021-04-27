@@ -9,6 +9,8 @@ public class JwtResponse {
     private String token;
     private String type="Bearer";
     private String username;
+    private String password;
+    private String email;
     private String fullName;
     private String address;
     private String phone;
@@ -38,6 +40,51 @@ public class JwtResponse {
         this.phone = phone;
         this.avatar = avatar;
         this.roles = roles;
+    }
+
+    public JwtResponse(Long id, String token, String username, String password, String email, String fullName, String address, String phone, String avatar, Collection<? extends GrantedAuthority> roles) {
+        this.id = id;
+        this.token = token;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.fullName = fullName;
+        this.address = address;
+        this.phone = phone;
+        this.avatar = avatar;
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getFullName() {
