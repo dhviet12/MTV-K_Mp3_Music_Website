@@ -3,9 +3,11 @@ package com.example.demo.service.playlist;
 import com.example.demo.model.PlayList;
 import com.example.demo.repository.IPlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PlaylistService implements IPlaylistService {
 
     @Autowired

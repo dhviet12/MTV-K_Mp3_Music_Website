@@ -20,12 +20,12 @@ public class PlayList {
     @ManyToOne
     private User user;
     private Timestamp timeUpdate;
-    private int view;
+    private Long view;
 
     public PlayList() {
     }
 
-    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, User user, Timestamp timeUpdate, int view) {
+    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, User user, Timestamp timeUpdate, Long view) {
         this.id = id;
         this.name = name;
         this.songs = songs;
@@ -101,11 +101,11 @@ public class PlayList {
         this.timeUpdate = timeUpdate;
     }
 
-    public int getView() {
+    public Long getView() {
         return view;
     }
 
-    public void setView(int view) {
+    public void setView(Long view) {
         this.view = view;
     }
 }
