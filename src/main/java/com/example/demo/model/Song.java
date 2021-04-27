@@ -20,7 +20,6 @@ public class Song {
     @Column(nullable = false)
     private Timestamp createdTime;
     private Timestamp updatedTime;
-    @Column(nullable = false)
     private Long numberOfView;
     @ManyToMany(mappedBy = "songs")
     private List<Singer> singer;
