@@ -15,7 +15,7 @@ public class Song {
     private String nameSong;
     private String description;
     private String fileMp3;
-    private String fileImg;
+    private String fileImage;
     private String author;
     @Column(nullable = false)
     private Timestamp createdTime;
@@ -38,18 +38,18 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImg, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
-        this.fileImg = fileImg;
+        this.fileImage = fileImage;
         this.author = author;
         this.createdTime = createdTime;
         this.updatedTime = updatedTime;
         this.numberOfView = numberOfView;
         this.singer = singer;
-        CreateBy = createBy;
+        this.CreateBy = createBy;
         this.category = category;
         this.likes = likes;
         this.comments = comments;
@@ -87,12 +87,12 @@ public class Song {
         this.fileMp3 = fileMp3;
     }
 
-    public String getFileImg() {
-        return fileImg;
+    public String getFileImage() {
+        return fileImage;
     }
 
-    public void setFileImg(String fileImg) {
-        this.fileImg = fileImg;
+    public void setFileImage(String fileImage) {
+        this.fileImage = fileImage;
     }
 
     public String getAuthor() {
