@@ -15,13 +15,14 @@ public class Song {
     private String nameSong;
     private String description;
     private String fileMp3;
-    private String fileImage;
+    private String fileImg;
     private String author;
     @Column(nullable = false)
     private Timestamp createdTime;
     private Timestamp updatedTime;
     private Long numberOfView;
     @ManyToMany(mappedBy = "songs")
+    @JsonIgnore
     private List<Singer> singer;
     @ManyToOne
     private User CreateBy;
@@ -31,17 +32,18 @@ public class Song {
     @JsonIgnore
     private List<Like> likes;
     @OneToMany
+    @JsonIgnore
     private List<CommentOfSong> comments;
 
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImg, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
         this.fileMp3 = fileMp3;
-        this.fileImage = fileImage;
+        this.fileImg = fileImg;
         this.author = author;
         this.createdTime = createdTime;
         this.updatedTime = updatedTime;
@@ -85,12 +87,12 @@ public class Song {
         this.fileMp3 = fileMp3;
     }
 
-    public String getFileImage() {
-        return fileImage;
+    public String getFileImg() {
+        return fileImg;
     }
 
-    public void setFileImage(String fileImage) {
-        this.fileImage = fileImage;
+    public void setFileImg(String fileImg) {
+        this.fileImg = fileImg;
     }
 
     public String getAuthor() {

@@ -36,7 +36,7 @@ public class User {
     private String phone;
     private String avatar;
     @ManyToMany
-    @JsonIgnore
+//    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany

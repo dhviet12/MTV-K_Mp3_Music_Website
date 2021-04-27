@@ -38,8 +38,6 @@ public class CommentSongController {
 
     @PostMapping("/create")
     public ResponseEntity<List<CommentOfSong>>post(@RequestBody CommentOfSong commentOfSong){
-        User user = userService.getCurrentUser();
-        commentOfSong.setUser(user);
         commentSongService.save(commentOfSong);
         return new ResponseEntity(commentOfSong,HttpStatus.CREATED);
     }
