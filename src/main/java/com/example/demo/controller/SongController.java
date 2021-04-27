@@ -5,7 +5,6 @@ import com.example.demo.model.user.User;
 import com.example.demo.service.ISongService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,12 +40,10 @@ public class SongController {
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create-song", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create-song")
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
         Timestamp createdTime = new Timestamp(System.currentTimeMillis());
         song.setCreatedTime(createdTime);
-        User createdBy = userService.getCurrentUser();
-        song.setCreateBy(createdBy);
         songService.save(song);
         return new ResponseEntity<>(song, HttpStatus.CREATED);
     }
