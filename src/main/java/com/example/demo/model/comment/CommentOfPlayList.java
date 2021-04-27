@@ -1,12 +1,14 @@
-package com.example.demo.model;
+package com.example.demo.model.comment;
 
+import com.example.demo.model.PlayList;
+import com.example.demo.model.Song;
 import com.example.demo.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-public class CommentOfSong {
+public class CommentOfPlayList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,17 +17,16 @@ public class CommentOfSong {
     @JsonIgnore
     private User user;
     @ManyToOne
-//    @JsonIgnore
-    private Song song;
+    private PlayList playList;
 
-    public CommentOfSong() {
+    public CommentOfPlayList() {
     }
 
-    public CommentOfSong(Long id, String content, User user, Song song) {
+    public CommentOfPlayList(Long id, String content, User user, PlayList playList) {
         this.id = id;
         this.content = content;
         this.user = user;
-        this.song = song;
+        this.playList = playList;
     }
 
     public Long getId() {
@@ -52,11 +53,11 @@ public class CommentOfSong {
         this.user = user;
     }
 
-    public Song getSong() {
-        return song;
+    public PlayList getPlayList() {
+        return playList;
     }
 
-    public void setSong(Song song) {
-        this.song = song;
+    public void setPlayList(PlayList playList) {
+        this.playList = playList;
     }
 }

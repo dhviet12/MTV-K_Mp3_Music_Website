@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.model.comment.CommentOfSong;
 import com.example.demo.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
