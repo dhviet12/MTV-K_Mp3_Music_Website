@@ -19,4 +19,9 @@ public class LikeSongService implements ILikeSongService {
         likeSongRepository.deleteById(id);
 
     }
+
+    @Override
+    public LikeSong findById(Long id) {
+        return likeSongRepository.findLikeSongById(id);
+    }
 }

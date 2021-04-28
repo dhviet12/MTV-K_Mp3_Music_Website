@@ -6,4 +6,6 @@ public interface ILikeSongService {
     LikeSong save (LikeSong likeSong);
     void delete(Long id);
 
+    LikeSong findById(Long id);
+
 }

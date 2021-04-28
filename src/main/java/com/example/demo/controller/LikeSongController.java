@@ -30,15 +30,27 @@ public class LikeSongController {
     @Autowired
     SongServiceImp songService;
 
-    @PostMapping("/like/{id}")
-    public ResponseEntity<?> like(@RequestBody LikeSong likeSong, @PathVariable Long id) {
-        Song song = songService.findById(id);
-        if (song == null) {
-            return new ResponseEntity<>(new ResponseMessage("Cant find this song"), HttpStatus.BAD_REQUEST);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> likeSongModel (@PathVariable Long id){
+        if (likeSongService.findById(id) ==null){
+            return new ResponseEntity<>(new ResponseMessage("Not found"),HttpStatus.NOT_FOUND);
         }
-        likeSong.setSong(song);
-        User currentUser = userService.getCurrentUser();
-        likeSong.setUser(currentUser);
+        return new ResponseEntity<>(likeSongService.findById(id),HttpStatus.OK);
+    }
+
+    @PostMapping("/like")
+    public ResponseEntity<?> like(@RequestBody LikeSong likeSong) {
         return new ResponseEntity<>(likeSongService.save(likeSong), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/unlike/{id}")
+    public ResponseEntity<?> unlike (@PathVariable Long id) {
+        LikeSong likeSong = likeSongService.findById(id);
+        User currentUser = userService.getCurrentUser();
+        if (likeSong.getUser() == currentUser) {
+            likeSongService.delete(likeSong.getId());
+            return new ResponseEntity<>(new ResponseMessage("Unlike"),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseMessage("Failed"),HttpStatus.BAD_REQUEST);
     }
 }

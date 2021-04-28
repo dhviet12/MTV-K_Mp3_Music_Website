@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface LikeSongRepository extends JpaRepository<LikeSong,Long> {
+    LikeSong findLikeSongById(Long id);
 
 
 }
