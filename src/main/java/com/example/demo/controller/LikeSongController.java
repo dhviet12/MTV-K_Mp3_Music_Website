@@ -11,6 +11,7 @@ import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,14 +44,22 @@ public class LikeSongController {
         return new ResponseEntity<>(likeSongService.save(likeSong), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/unlike/{id}")
-    public ResponseEntity<?> unlike (@PathVariable Long id) {
-        LikeSong likeSong = likeSongService.findById(id);
+    @DeleteMapping("/unlike/{sid}")
+    public ResponseEntity<?> unlike (@PathVariable Long sid) {
+
+       Song song = songService.findById(sid);
         User currentUser = userService.getCurrentUser();
-        if (likeSong.getUser() == currentUser) {
-            likeSongService.delete(likeSong.getId());
+        System.out.println("user"+currentUser.getId());
+
+//        if (likeSong.getUser() == currentUser ) {
+//            likeSongService.delete(likeSong.getId());
+//            return new ResponseEntity<>(new ResponseMessage("Unlike"),HttpStatus.OK);
+//        }
+        if(song != null ){
+            likeSongService.deleteLikeSong(sid, currentUser.getId());
             return new ResponseEntity<>(new ResponseMessage("Unlike"),HttpStatus.OK);
         }
+
         return new ResponseEntity<>(new ResponseMessage("Failed"),HttpStatus.BAD_REQUEST);
     }
 }

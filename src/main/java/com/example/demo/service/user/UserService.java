@@ -10,12 +10,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.Optional;
 
 
 @Service
 public class UserService implements IUserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,7 +59,7 @@ public class UserService implements IUserService, UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    @Override
+
     public User getCurrentUser() {
         User user;
         String userName;
@@ -70,6 +73,46 @@ public class UserService implements IUserService, UserDetailsService {
         user = this.findUserByUserName(userName);
         return user;
     }
+
+//    @Override
+//    public User getCurrentUser() {
+//        Optional<User> user;
+//        String userName;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            userName = ((UserDetails) principal).getUsername();
+//        } else {
+//            userName = principal.toString();
+//        }
+//        if (userRepository.existsByUsername(userName)) {
+//            user = Optional.ofNullable(userRepository.findByUsername(userName));
+//        } else {
+//            user = Optional.of(new User());
+//            user.get().setUsername(userName);
+//        }
+//        return user.get();
+//    }
+
+
+
+//    @Override
+//    public User findByUsername(String username) {
+//        Optional<User> user;
+//        String userName;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if(principal instanceof UserDetails){
+//            userName = ((UserDetails) principal).getUsername();
+//        } else {
+//            userName = principal.toString();
+//        }
+//        if(userRepository.existsByUsername(userName)){
+//            user = Optional.ofNullable(userService.findByUsername(userName));
+//        } else {
+//            user = Optional.of(new User());
+//            user.get().setUsername("Anonymous");
+//        }
+//        return user.get();
+//    }
 
 
 }
