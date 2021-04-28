@@ -33,4 +33,8 @@ public class PlaylistService implements IPlaylistService {
         playlistRepository.deleteById(id);
     }
 
+    @Override
+    public List<PlayList> findAllByUserUsername(String username) {
+        return playlistRepository.findAllByUserUsername(username);
+    }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.PlayList;
+import com.example.demo.model.user.User;
 import com.example.demo.service.playlist.PlaylistService;
+import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class PlaylistController {
 
     @Autowired
     private PlaylistService playlistService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("")
     public ResponseEntity<List<PlayList>> showAll() {
@@ -53,6 +58,21 @@ public class PlaylistController {
     public ResponseEntity<PlayList> deletePlaylist(@PathVariable Long id) {
         playlistService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<PlayList>> findAllByUserUsername(@PathVariable String username) {
+        List<PlayList> playlists = playlistService.findAllByUserUsername(username);
+        return new ResponseEntity<>(playlists, HttpStatus.OK);
+    }
+
+    @PostMapping("/user/create/{username}")
+    public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username){
+        User user = userService.findUserByUserName(username);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        playList.setTimeUpdate(timestamp);
+        playList.setUser(user);
+        return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
 }
