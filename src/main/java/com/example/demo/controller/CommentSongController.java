@@ -46,7 +46,7 @@ public class CommentSongController {
     public ResponseEntity<CommentOfSong>update(@RequestBody CommentOfSong commentOfSong, @PathVariable Long id){
         commentOfSong.setId(id);
         String user = String.valueOf(userService.getCurrentUser());
-        String users = commentSongService.findById(id).getUser().getUsername();
+        String users = commentSongService.findById(id).getCreatedBy().getUsername();
         boolean us= users.equals(user);
         if (us){
             commentSongService.save(commentOfSong);
@@ -60,7 +60,7 @@ public class CommentSongController {
         CommentOfSong commentOfSong = commentSongService.findById(id);
         User user = userService.getCurrentUser();
         String username = user.getUsername();
-        boolean us = username.equalsIgnoreCase(commentOfSong.getUser().getUsername());
+        boolean us = username.equalsIgnoreCase(commentOfSong.getCreatedBy().getUsername());
         if (us){
             commentSongService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);

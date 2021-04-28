@@ -12,19 +12,17 @@ public class CommentOfSong {
     private Long id;
     private String content;
     @ManyToOne
-    @JsonIgnore
-    private User user;
+    private User createdBy;
     @ManyToOne
-//    @JsonIgnore
     private Song song;
 
     public CommentOfSong() {
     }
 
-    public CommentOfSong(Long id, String content, User user, Song song) {
+    public CommentOfSong(Long id, String content, User createdBy, Song song) {
         this.id = id;
         this.content = content;
-        this.user = user;
+        this.createdBy = createdBy;
         this.song = song;
     }
 
@@ -44,12 +42,12 @@ public class CommentOfSong {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Song getSong() {

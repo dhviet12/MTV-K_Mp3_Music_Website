@@ -98,6 +98,5 @@ public class LoginController {
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 
     }
-
-
+    
 }

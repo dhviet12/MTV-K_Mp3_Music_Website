@@ -9,8 +9,8 @@ public class JwtResponse {
     private String token;
     private String type="Bearer";
     private String username;
-    private String password;
     private String email;
+    private String password;
     private String fullName;
     private String address;
     private String phone;
