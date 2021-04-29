@@ -35,8 +35,7 @@ public class CommentPlayListController {
 
     @PostMapping("/create")
     public ResponseEntity<List<CommentOfPlayList>>post(@RequestBody CommentOfPlayList commentOfPlayList){
-        commentPlayListService.save(commentOfPlayList);
-        return new ResponseEntity(commentOfPlayList,HttpStatus.CREATED);
+        return new ResponseEntity(commentPlayListService.save(commentOfPlayList),HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
