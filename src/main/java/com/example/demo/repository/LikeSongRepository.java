@@ -12,8 +12,8 @@ public interface LikeSongRepository extends JpaRepository<LikeSong,Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "delete from like_song where song_id = ?1 && user_id = ?2 ; ", nativeQuery = true)
-    void deleteLikeSong (Long sId, Long uId);
+    @Query(value = "delete from like_song where song_id = ?1 ; ", nativeQuery = true)
+    void deleteLikeSong (Long sId);
 
 
 }

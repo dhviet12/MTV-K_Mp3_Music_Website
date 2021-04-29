@@ -25,7 +25,9 @@ public class LikeSongService implements ILikeSongService {
         return likeSongRepository.findLikeSongById(id);
     }
 
-    public void deleteLikeSong(Long sId,Long uId){
-        likeSongRepository.deleteLikeSong(sId,uId);
+    //
+    public void deleteLikeSong(Long sId){
+        likeSongRepository.deleteLikeSong(sId);
     }
+
 }
