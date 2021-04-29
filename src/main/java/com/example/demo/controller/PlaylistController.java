@@ -67,18 +67,32 @@ public class PlaylistController {
     }
 
     @PostMapping("/user/create/{username}")
-    public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username){
+    public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username) {
         User user = userService.findUserByUserName(username);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        playList.setTimeUpdate(timestamp);
+        playList.setTimeCreate(timestamp);
         playList.setUser(user);
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/user/create/{username}/{id}")
-    public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username){
-            playlistService.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username) {
+        playlistService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/user/edit/{username}/{id}")
+    public ResponseEntity<PlayList> updatePlayListByUser(@PathVariable String username, @RequestBody PlayList playList, @PathVariable Long id) {
+        if (playlistService.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            User user = userService.findUserByUserName(username);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            playList.setTimeUpdate(timestamp);
+            playList.setUser(user);
+            playlistService.save(playList);
+            return new ResponseEntity<>(playList, HttpStatus.OK);
+        }
     }
 
 }
