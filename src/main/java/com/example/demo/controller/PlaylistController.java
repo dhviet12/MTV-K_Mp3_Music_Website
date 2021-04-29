@@ -75,4 +75,10 @@ public class PlaylistController {
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/user/create/{username}/{id}")
+    public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username){
+            playlistService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
