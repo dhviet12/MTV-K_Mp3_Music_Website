@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.PlayList;
+import com.example.demo.model.Song;
 import com.example.demo.model.user.User;
 import com.example.demo.service.playlist.PlaylistService;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,5 +76,9 @@ public class PlaylistController {
         playList.setUser(user);
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
-
+    @GetMapping( "/{id}")
+    public ResponseEntity<PlayList> detail(@PathVariable Long id) {
+        PlayList playList = playlistService.findById(id);
+        return new ResponseEntity<>(playList, HttpStatus.OK);
+    }
 }

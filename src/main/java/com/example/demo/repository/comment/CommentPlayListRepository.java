@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface CommentPlayListRepository extends CrudRepository<CommentOfPlayList, Long> {
-//    @Query(value = "select * from comment_of_song where song_id = ?", nativeQuery = true)
+    @Query(value = "select * from comment_of_play_list where play_list_id = ?;", nativeQuery = true)
     List<CommentOfPlayList> getAllByPlayListId(Long id);
 }
