@@ -20,5 +20,6 @@ public interface IUserService {
     User findUserByUserName(String username);
 
     User getCurrentUser();
+//    User findByUsername(String username);
 
 }
