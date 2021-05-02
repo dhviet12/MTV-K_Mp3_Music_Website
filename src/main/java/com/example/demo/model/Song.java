@@ -21,9 +21,7 @@ public class Song {
     private Timestamp createdTime;
     private Timestamp updatedTime;
     private Long numberOfView;
-    @ManyToMany(mappedBy = "songs")
-    @JsonIgnore
-    private List<Singer> singer;
+    private String singer;
     @ManyToOne
     private User CreateBy;
     @ManyToOne
@@ -40,7 +38,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, List<Singer> singer, User createBy, Category category, PlayList playList, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, String singer, User createBy, Category category, PlayList playList, List<Like> likes, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
@@ -51,7 +49,7 @@ public class Song {
         this.updatedTime = updatedTime;
         this.numberOfView = numberOfView;
         this.singer = singer;
-        this.CreateBy = createBy;
+        CreateBy = createBy;
         this.category = category;
         this.playList = playList;
         this.likes = likes;
@@ -130,11 +128,11 @@ public class Song {
         this.numberOfView = numberOfView;
     }
 
-    public List<Singer> getSinger() {
+    public String getSinger() {
         return singer;
     }
 
-    public void setSinger(List<Singer> singer) {
+    public void setSinger(String singer) {
         this.singer = singer;
     }
 
