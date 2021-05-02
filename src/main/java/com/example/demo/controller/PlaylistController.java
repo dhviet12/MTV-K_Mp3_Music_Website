@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.PlayList;
+import com.example.demo.model.Song;
 import com.example.demo.model.user.User;
 import com.example.demo.service.playlist.PlaylistService;
 import com.example.demo.service.user.UserService;
@@ -60,10 +61,22 @@ public class PlaylistController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //CRUD Theo User
     @GetMapping("/user/{username}")
     public ResponseEntity<List<PlayList>> findAllByUserUsername(@PathVariable String username) {
         List<PlayList> playlists = playlistService.findAllByUserUsername(username);
         return new ResponseEntity<>(playlists, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{username}/{id}")
+    public ResponseEntity<PlayList> getPlayListById(@PathVariable Long id, @PathVariable String username) {
+        PlayList playList = playlistService.findById(id);
+        if (playList == null) {
+            System.out.println("Playlist with id : " + id + "not found");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(playList, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/user/create/{username}")
@@ -75,7 +88,7 @@ public class PlaylistController {
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/user/create/{username}/{id}")
+    @DeleteMapping("/user/delete/{username}/{id}")
     public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username) {
         playlistService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -93,6 +106,11 @@ public class PlaylistController {
             playlistService.save(playList);
             return new ResponseEntity<>(playList, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/user/{idPlaylist}/songs/{idSong}")
+    public ResponseEntity<PlayList> addSongToPlaylist(@PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idSong") Long idSong) {
+        return new ResponseEntity<>(playlistService.addSongToPlaylist(idSong, idPlaylist), HttpStatus.OK);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.PlayList;
 import com.example.demo.model.Song;
 import com.example.demo.model.user.User;
 import com.example.demo.service.ISongService;
+import com.example.demo.service.playlist.IPlaylistService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ public class SongController {
     private ISongService songService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IPlaylistService playlistService;
 
     @RequestMapping(value = "/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Song>> getAllSong() {
@@ -80,9 +84,27 @@ public class SongController {
 
     //Top view
     @GetMapping(value = "/top10songsview", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity< List<Song>> top10SongsView() {
+    public ResponseEntity<List<Song>> top10SongsView() {
         List<Song> songList = songService.findAllByNumberOfViewOrderByNumberOfView();
         return new ResponseEntity<>(songList, HttpStatus.OK);
+    }
+
+    @GetMapping("/song-playlist/{id}/user/{username}")
+    public ResponseEntity<List<Song>> getListSongByIdPlayList(@PathVariable Long id, @PathVariable String username) {
+        PlayList playlist = playlistService.findById(id);
+        List<Song> listSong = playlist.getSongs();
+        return new ResponseEntity<>(listSong, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/song-playlist/{idPlaylist}/user/{username}/delete/{idSong}")
+    public ResponseEntity<List<Song>> deleteSongOutPlayList(@PathVariable Long idPlaylist, @PathVariable Long idSong, @PathVariable String username) {
+        PlayList playlist = playlistService.findById(idPlaylist);
+        List<Song> listSong = playlist.getSongs();
+        Song song = songService.findById(idSong);
+        listSong.remove(song);
+        playlist.setSongs(listSong);
+        playlistService.save(playlist);
+        return new ResponseEntity<>(listSong, HttpStatus.OK);
     }
 
 }
