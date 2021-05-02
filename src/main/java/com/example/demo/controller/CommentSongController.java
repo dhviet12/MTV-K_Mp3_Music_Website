@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CommentOfSong;
-import com.example.demo.model.Song;
 import com.example.demo.model.user.User;
-import com.example.demo.service.ISongService;
-import com.example.demo.service.SongServiceImp;
+import com.example.demo.service.song.SongServiceImp;
 import com.example.demo.service.commentSong.ICommentSongService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

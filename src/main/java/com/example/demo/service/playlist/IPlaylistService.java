@@ -6,6 +6,5 @@ import com.example.demo.service.IService;
 import java.util.List;
 
 public interface IPlaylistService extends IService<PlayList> {
-
-    List<PlayList> findAllByUserUsername(String username);
+    List<PlayList> getAllByCreatedById(Long id);
 }

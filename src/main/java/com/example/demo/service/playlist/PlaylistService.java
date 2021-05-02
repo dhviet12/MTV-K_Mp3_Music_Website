@@ -15,7 +15,7 @@ public class PlaylistService implements IPlaylistService {
 
     @Override
     public List<PlayList> findAll() {
-        return (List<PlayList>) playlistRepository.findAll();
+        return playlistRepository.findAll();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public List<PlayList> findAllByUserUsername(String username) {
-        return playlistRepository.findAllByUserUsername(username);
+    public List<PlayList> getAllByCreatedById(Long id) {
+        return playlistRepository.getAllByCreatedById(id);
     }
 }

@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Song;
-import com.example.demo.model.user.User;
-import com.example.demo.service.ISongService;
+import com.example.demo.service.song.ISongService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +39,7 @@ public class SongController {
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create-song")
+    @PostMapping(value = "/create-song", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
         Timestamp createdTime = new Timestamp(System.currentTimeMillis());
         song.setCreatedTime(createdTime);

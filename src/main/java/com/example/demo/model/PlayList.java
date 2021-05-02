@@ -12,29 +12,31 @@ public class PlayList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
-    private List<Song> songs;
-    private String kindOfMusic;
-    private Timestamp timeCreate;
+    private String fileImage;
     private String description;
-    @ManyToOne
-    private User user;
+    private Timestamp timeCreate;
     private Timestamp timeUpdate;
     private Long view;
+    @OneToMany
+    private List<Song> songs;
+    @ManyToOne
+    private Category category;
+    @ManyToOne
+    private User createdBy;
 
     public PlayList() {
     }
 
-    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, User user, Timestamp timeUpdate, Long view) {
+    public PlayList(Long id, String name, String description, Timestamp timeCreate, Timestamp timeUpdate, Long view, List<Song> songs, Category category, User createdBy) {
         this.id = id;
         this.name = name;
-        this.songs = songs;
-        this.kindOfMusic = kindOfMusic;
-        this.timeCreate = timeCreate;
         this.description = description;
-        this.user = user;
+        this.timeCreate = timeCreate;
         this.timeUpdate = timeUpdate;
         this.view = view;
+        this.songs = songs;
+        this.category = category;
+        this.createdBy = createdBy;
     }
 
     public Long getId() {
@@ -53,30 +55,6 @@ public class PlayList {
         this.name = name;
     }
 
-    public List<Song> getSongs() {
-        return songs;
-    }
-
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
-    }
-
-    public String getKindOfMusic() {
-        return kindOfMusic;
-    }
-
-    public void setKindOfMusic(String kindOfMusic) {
-        this.kindOfMusic = kindOfMusic;
-    }
-
-    public Timestamp getTimeCreate() {
-        return timeCreate;
-    }
-
-    public void setTimeCreate(Timestamp timeCreate) {
-        this.timeCreate = timeCreate;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -85,12 +63,12 @@ public class PlayList {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public Timestamp getTimeCreate() {
+        return timeCreate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTimeCreate(Timestamp timeCreate) {
+        this.timeCreate = timeCreate;
     }
 
     public Timestamp getTimeUpdate() {
@@ -107,5 +85,37 @@ public class PlayList {
 
     public void setView(Long view) {
         this.view = view;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getFileImage() {
+        return fileImage;
+    }
+
+    public void setFileImage(String fileImage) {
+        this.fileImage = fileImage;
     }
 }

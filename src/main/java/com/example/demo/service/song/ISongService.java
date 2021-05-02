@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.song;
 
 import com.example.demo.model.Song;
 import org.springframework.data.jpa.repository.Query;

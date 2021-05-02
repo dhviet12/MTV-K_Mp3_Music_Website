@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.song;
 
 import com.example.demo.model.Song;
 import com.example.demo.repository.SongRepository;
+import com.example.demo.service.song.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
