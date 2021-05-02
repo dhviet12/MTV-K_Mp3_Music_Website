@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class PlaylistService implements ILikePlaylistService{
+public class LikePlaylistService implements ILikePlaylistService{
 
     @Autowired
     private LikePlayListRepository likePlayListRepository;
 
     @Override
     public List<LikePlayList> findAll() {
-        return null;
+        return (List<LikePlayList>) likePlayListRepository.findAll();
     }
 
     @Override
@@ -29,6 +29,6 @@ public class PlaylistService implements ILikePlaylistService{
 
     @Override
     public void delete(Long id) {
-        likePlayListRepository.deleteLikePlayList(id);
+        likePlayListRepository.deleteById(id);
     }
 }

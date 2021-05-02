@@ -40,12 +40,7 @@ public class LikePlaylistController {
 
     @DeleteMapping("/unlike/{id}")
     public ResponseEntity<?> unlike(@PathVariable Long id) {
-        PlayList playList = playlistService.findById(id);
-        if (playList != null) {
-            likePlaylistService.delete(id);
-            return new ResponseEntity<>(new ResponseMessage("Unlike"), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(new ResponseMessage("Failed"), HttpStatus.BAD_REQUEST);
+        likePlaylistService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

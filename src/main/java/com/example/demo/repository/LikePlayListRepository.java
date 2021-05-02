@@ -10,9 +10,4 @@ import javax.transaction.Transactional;
 @Repository
 public interface LikePlayListRepository extends CrudRepository<LikePlayList , Long> {
     LikePlayList findLikePlayListById(Long id);
-
-    @Modifying
-    @Transactional
-    @Query(value = "delete from like_playlist where playlist_id = ?1 ; ", nativeQuery = true)
-    void deleteLikePlayList (Long id);
 }
