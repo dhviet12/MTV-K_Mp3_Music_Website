@@ -63,4 +63,14 @@ public class LikeSongController {
 
         return new ResponseEntity<>(new ResponseMessage("Failed"), HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/total/{sid}")
+    public ResponseEntity<?> showTotalLikeOfSong(@PathVariable Long sid){
+        Song song = songService.findById(sid);
+        if (song != null){
+            return new ResponseEntity<>(likeSongService.getTotalLikeOfSong(sid),HttpStatus.OK);
+
+        }
+        return new ResponseEntity<>(new ResponseMessage("Cant find this song"),HttpStatus.NOT_FOUND);
+    }
 }
