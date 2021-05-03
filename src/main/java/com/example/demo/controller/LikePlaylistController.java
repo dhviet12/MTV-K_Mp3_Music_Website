@@ -56,6 +56,16 @@ public class LikePlaylistController {
         return new ResponseEntity<>(new ResponseMessage("Failed"), HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/total/{pid}")
+    public ResponseEntity<?> showTotalLikeOfSong(@PathVariable Long pid){
+        PlayList playList = playlistService.findById(pid);
+        if ( playList != null){
+            return new ResponseEntity<>(likePlaylistService.getTotalLikeOfPlaylist(pid),HttpStatus.OK);
+
+        }
+        return new ResponseEntity<>(new ResponseMessage("Cant find this playlist"),HttpStatus.NOT_FOUND);
+    }
+
 
 
 }

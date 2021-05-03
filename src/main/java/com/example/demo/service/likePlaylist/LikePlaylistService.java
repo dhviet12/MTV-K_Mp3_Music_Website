@@ -25,6 +25,11 @@ public class LikePlaylistService implements ILikePlaylistService{
         return likePlaylistRepository.findLikePlaylistById(id);
     }
 
+    @Override
+    public int getTotalLikeOfPlaylist(Long pId) {
+        return likePlaylistRepository.showTotalLikeOfPlaylist(pId);
+    }
+
     public void deleteLikePlaylist(Long pId){
         likePlaylistRepository.deleteLikePlaylist(pId);
     }

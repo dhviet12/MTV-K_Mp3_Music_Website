@@ -15,4 +15,7 @@ public interface LikePlaylistRepository extends JpaRepository<LikePlaylist,Long>
     @Transactional
     @Query(value = "delete from like_playlist where play_list_id = ?1 ; ", nativeQuery = true)
     void deleteLikePlaylist (Long pId);
+
+    @Query(value = "select count(user_id) as 'total_like' from like_playlist where play_list_id= ?1 group by play_list_id ;", nativeQuery = true)
+    int showTotalLikeOfPlaylist(Long pId);
 }

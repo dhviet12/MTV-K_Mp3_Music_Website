@@ -8,4 +8,6 @@ public interface ILikePlaylistService {
     void delete(Long id);
 
     LikePlaylist findById(Long id);
+
+    int getTotalLikeOfPlaylist(Long pId);
 }
