@@ -58,4 +58,8 @@ public class PlaylistService implements IPlaylistService {
         return playlist;
     }
 
+    @Override
+    public List<PlayList> findAllByName(String name) {
+        return playlistRepository.findAllByName(name);
+    }
 }

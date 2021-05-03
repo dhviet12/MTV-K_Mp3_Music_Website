@@ -7,6 +7,7 @@ import com.example.demo.service.playlist.PlaylistService;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -111,6 +112,14 @@ public class PlaylistController {
     @GetMapping("/user/{idPlaylist}/songs/{idSong}")
     public ResponseEntity<PlayList> addSongToPlaylist(@PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idSong") Long idSong) {
         return new ResponseEntity<>(playlistService.addSongToPlaylist(idSong, idPlaylist), HttpStatus.OK);
+    }
+
+    //Tìm kiếm playlist
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PlayList>> searchNameSong(@RequestParam String name) {
+        String namePlaylist = "%" + name + "%";
+        List<PlayList> songList = playlistService.findAllByName(namePlaylist);
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
 }
