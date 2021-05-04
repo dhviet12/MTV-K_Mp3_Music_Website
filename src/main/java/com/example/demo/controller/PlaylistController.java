@@ -89,6 +89,12 @@ public class PlaylistController {
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
+    @GetMapping( "/{id}")
+    public ResponseEntity<PlayList> detail(@PathVariable Long id) {
+        PlayList playList = playlistService.findById(id);
+        return new ResponseEntity<>(playList, HttpStatus.OK);
+    }
+
     @DeleteMapping("/user/delete/{username}/{id}")
     public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username) {
         playlistService.delete(id);
@@ -121,5 +127,4 @@ public class PlaylistController {
         List<PlayList> songList = playlistService.findAllByName(namePlaylist);
         return new ResponseEntity<>(songList, HttpStatus.OK);
     }
-
 }

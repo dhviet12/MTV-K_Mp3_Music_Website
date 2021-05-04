@@ -1,7 +1,7 @@
 package com.example.demo.service.commentSong;
 
-import com.example.demo.model.CommentOfSong;
-import com.example.demo.repository.CommentSongRepository;
+import com.example.demo.model.comment.CommentOfSong;
+import com.example.demo.repository.comment.CommentSongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
