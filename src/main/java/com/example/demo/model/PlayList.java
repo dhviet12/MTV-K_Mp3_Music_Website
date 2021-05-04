@@ -12,7 +12,7 @@ public class PlayList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
+    @ManyToMany
     private List<Song> songs;
     private String kindOfMusic;
     private Timestamp timeCreate;

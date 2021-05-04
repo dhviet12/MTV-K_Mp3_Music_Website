@@ -45,4 +45,9 @@ public class SongServiceImp implements ISongService {
     public List<Song> findAllByNameSong(String nameSong) {
         return songRepository.findAllByNameSong(nameSong);
     }
+
+    @Override
+    public List<Song> getAllByCreateById(Long id) {
+        return songRepository.getAllByCreateById(id);
+    }
 }

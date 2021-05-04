@@ -8,4 +8,8 @@ import java.util.List;
 public interface IPlaylistService extends IService<PlayList> {
 
     List<PlayList> findAllByUserUsername(String username);
+
+    PlayList addSongToPlaylist(Long idSong, Long idPlaylist);
+
+    List<PlayList> findAllByName(String name);
 }

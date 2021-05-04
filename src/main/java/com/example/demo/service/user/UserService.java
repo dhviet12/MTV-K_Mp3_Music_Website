@@ -74,45 +74,5 @@ public class UserService implements IUserService, UserDetailsService {
         return user;
     }
 
-//    @Override
-//    public User getCurrentUser() {
-//        Optional<User> user;
-//        String userName;
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (principal instanceof UserDetails) {
-//            userName = ((UserDetails) principal).getUsername();
-//        } else {
-//            userName = principal.toString();
-//        }
-//        if (userRepository.existsByUsername(userName)) {
-//            user = Optional.ofNullable(userRepository.findByUsername(userName));
-//        } else {
-//            user = Optional.of(new User());
-//            user.get().setUsername(userName);
-//        }
-//        return user.get();
-//    }
-
-
-
-//    @Override
-//    public User findByUsername(String username) {
-//        Optional<User> user;
-//        String userName;
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if(principal instanceof UserDetails){
-//            userName = ((UserDetails) principal).getUsername();
-//        } else {
-//            userName = principal.toString();
-//        }
-//        if(userRepository.existsByUsername(userName)){
-//            user = Optional.ofNullable(userService.findByUsername(userName));
-//        } else {
-//            user = Optional.of(new User());
-//            user.get().setUsername("Anonymous");
-//        }
-//        return user.get();
-//    }
-
 
 }

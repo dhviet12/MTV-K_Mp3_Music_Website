@@ -62,23 +62,69 @@ public class PlaylistController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //CRUD Theo User
     @GetMapping("/user/{username}")
     public ResponseEntity<List<PlayList>> findAllByUserUsername(@PathVariable String username) {
         List<PlayList> playlists = playlistService.findAllByUserUsername(username);
         return new ResponseEntity<>(playlists, HttpStatus.OK);
     }
 
+    @GetMapping("/user/{username}/{id}")
+    public ResponseEntity<PlayList> getPlayListById(@PathVariable Long id, @PathVariable String username) {
+        PlayList playList = playlistService.findById(id);
+        if (playList == null) {
+            System.out.println("Playlist with id : " + id + "not found");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(playList, HttpStatus.OK);
+        }
+    }
+
     @PostMapping("/user/create/{username}")
-    public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username){
+    public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username) {
         User user = userService.findUserByUserName(username);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        playList.setTimeUpdate(timestamp);
+        playList.setTimeCreate(timestamp);
         playList.setUser(user);
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
+
     @GetMapping( "/{id}")
     public ResponseEntity<PlayList> detail(@PathVariable Long id) {
         PlayList playList = playlistService.findById(id);
         return new ResponseEntity<>(playList, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/delete/{username}/{id}")
+    public ResponseEntity<PlayList> deletePlayListByUser(@PathVariable Long id, @PathVariable String username) {
+        playlistService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/user/edit/{username}/{id}")
+    public ResponseEntity<PlayList> updatePlayListByUser(@PathVariable String username, @RequestBody PlayList playList, @PathVariable Long id) {
+        if (playlistService.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            User user = userService.findUserByUserName(username);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            playList.setTimeUpdate(timestamp);
+            playList.setUser(user);
+            playlistService.save(playList);
+            return new ResponseEntity<>(playList, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/user/{idPlaylist}/songs/{idSong}")
+    public ResponseEntity<PlayList> addSongToPlaylist(@PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idSong") Long idSong) {
+        return new ResponseEntity<>(playlistService.addSongToPlaylist(idSong, idPlaylist), HttpStatus.OK);
+    }
+
+    //Tìm kiếm playlist
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PlayList>> searchNameSong(@RequestParam String name) {
+        String namePlaylist = "%" + name + "%";
+        List<PlayList> songList = playlistService.findAllByName(namePlaylist);
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 }

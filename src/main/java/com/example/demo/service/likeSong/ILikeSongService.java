@@ -8,4 +8,6 @@ public interface ILikeSongService {
 
     LikeSong findById(Long id);
 
+    int getTotalLikeOfSong(Long sId);
+
 }
