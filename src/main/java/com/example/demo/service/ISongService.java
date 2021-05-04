@@ -17,4 +17,6 @@ public interface ISongService {
     List<Song> findAllByNumberOfViewOrderByNumberOfView();
     //Tìm kiếm theo tên bài hát
     List<Song> findAllByNameSong(String nameSong);
+
+    List<Song> getAllByCreateById(Long id);
 }

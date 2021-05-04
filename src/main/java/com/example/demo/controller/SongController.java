@@ -107,4 +107,16 @@ public class SongController {
         return new ResponseEntity<>(listSong, HttpStatus.OK);
     }
 
+    // lấy tất cả bài hát của user
+    @GetMapping(value = "/song-user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Song>> getAllOfUserCurrent(@PathVariable Long id) {
+        List<Song> songList = songService.getAllByCreateById(id);
+        if (songList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(songList, HttpStatus.OK);
+    }
+
 }
+
+
