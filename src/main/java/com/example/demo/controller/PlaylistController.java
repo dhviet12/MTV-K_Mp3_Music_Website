@@ -127,4 +127,13 @@ public class PlaylistController {
         List<PlayList> songList = playlistService.findAllByName(namePlaylist);
         return new ResponseEntity<>(songList, HttpStatus.OK);
     }
+
+    //playlist moi nhat
+    @GetMapping(value = "/top10newplaylist", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PlayList>> top10PlaylistNew() {
+        List<PlayList> playLists = playlistService.findAllByCreationTimeOrderByCreationTime();
+        return new ResponseEntity<>(playLists, HttpStatus.OK);
+    }
+
+
 }

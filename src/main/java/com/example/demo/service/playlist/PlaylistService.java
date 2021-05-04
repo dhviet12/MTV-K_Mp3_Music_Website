@@ -62,4 +62,9 @@ public class PlaylistService implements IPlaylistService {
     public List<PlayList> findAllByName(String name) {
         return playlistRepository.findAllByName(name);
     }
+
+    @Override
+    public List<PlayList> findAllByCreationTimeOrderByCreationTime() {
+        return playlistRepository.findAllByCreatedTimeOrderByCreatedTime();
+    }
 }
