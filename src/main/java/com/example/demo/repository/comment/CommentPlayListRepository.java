@@ -1,7 +1,6 @@
 package com.example.demo.repository.comment;
 
 import com.example.demo.model.comment.CommentOfPlayList;
-import com.example.demo.model.comment.CommentOfSong;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

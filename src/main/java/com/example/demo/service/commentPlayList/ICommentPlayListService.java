@@ -1,7 +1,6 @@
 package com.example.demo.service.commentPlayList;
 
 import com.example.demo.model.comment.CommentOfPlayList;
-import com.example.demo.model.comment.CommentOfSong;
 import com.example.demo.service.IService;
 
 import java.util.List;

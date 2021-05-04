@@ -1,11 +1,8 @@
 package com.example.demo.controller.comment;
 
 import com.example.demo.model.comment.CommentOfPlayList;
-import com.example.demo.model.comment.CommentOfSong;
 import com.example.demo.model.user.User;
-import com.example.demo.service.SongServiceImp;
 import com.example.demo.service.commentPlayList.ICommentPlayListService;
-import com.example.demo.service.commentSong.ICommentSongService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +39,7 @@ public class CommentPlayListController {
     public ResponseEntity<CommentOfPlayList>update(@RequestBody CommentOfPlayList commentOfPlayList, @PathVariable Long id){
         commentOfPlayList.setId(id);
         String user = String.valueOf(userService.getCurrentUser());
-        String users = commentPlayListService.findById(id).getUser().getUsername();
+        String users = commentPlayListService.findById(id).getCreatedBy().getUsername();
         boolean us= users.equals(user);
         if (us){
             commentPlayListService.save(commentOfPlayList);
@@ -56,7 +53,7 @@ public class CommentPlayListController {
         CommentOfPlayList commentOfPlayList = commentPlayListService.findById(id);
         User user = userService.getCurrentUser();
         String username = user.getUsername();
-        boolean us = username.equalsIgnoreCase(commentOfPlayList.getUser().getUsername());
+        boolean us = username.equalsIgnoreCase(commentOfPlayList.getCreatedBy().getUsername());
         if (us){
            commentPlayListService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
