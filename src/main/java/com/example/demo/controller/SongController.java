@@ -37,6 +37,8 @@ public class SongController {
     @GetMapping(value = "/song/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Song> detailSong(@PathVariable Long id) {
         Song song = songService.findById(id);
+        song.setNumberOfView(song.getNumberOfView() + 1);
+        songService.save(song);
         if (song == null) {
             System.out.println("Song with id : " + id + "not found");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -48,6 +50,7 @@ public class SongController {
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
         Timestamp createdTime = new Timestamp(System.currentTimeMillis());
         song.setCreatedTime(createdTime);
+        song.setNumberOfView(1L);
         songService.save(song);
         return new ResponseEntity<>(song, HttpStatus.CREATED);
     }
