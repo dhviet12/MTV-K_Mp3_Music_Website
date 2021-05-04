@@ -15,5 +15,9 @@ public interface IPlaylistRepository extends PagingAndSortingRepository<PlayList
 
     @Query(value = "select * from play_list where play_list.name like ?", nativeQuery = true)
     List<PlayList> findAllByName(String name);
+
+    //Top 10 playlist moi nhat
+    @Query(value = "select * from play_list order by time_create desc limit 10", nativeQuery = true)
+    List<PlayList> findAllByCreatedTimeOrderByCreatedTime();
 }
 
