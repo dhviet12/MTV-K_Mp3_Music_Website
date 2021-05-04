@@ -25,6 +25,11 @@ public class LikeSongService implements ILikeSongService {
         return likeSongRepository.findLikeSongById(id);
     }
 
+    @Override
+    public int getTotalLikeOfSong(Long sId) {
+        return likeSongRepository.showTotalLikeOfSong(sId);
+    }
+
     //
     public void deleteLikeSong(Long sId){
         likeSongRepository.deleteLikeSong(sId);
