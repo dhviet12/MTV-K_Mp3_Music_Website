@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface IPlaylistRepository extends PagingAndSortingRepository<PlayList, Long> {
 
-    List<PlayList> findAllByUserUsername(String username);
+    List<PlayList> findAllByAppUserUsername(String username);
 
     @Query(value = "select * from play_list where play_list.name like ?", nativeQuery = true)
     List<PlayList> findAllByName(String name);

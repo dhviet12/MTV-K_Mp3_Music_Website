@@ -64,7 +64,7 @@ public class PlaylistController {
     //CRUD Theo User
     @GetMapping("/user/{username}")
     public ResponseEntity<List<PlayList>> findAllByUserUsername(@PathVariable String username) {
-        List<PlayList> playlists = playlistService.findAllByUserUsername(username);
+        List<PlayList> playlists = playlistService.findAllByAppUserUsername(username);
         return new ResponseEntity<>(playlists, HttpStatus.OK);
     }
 

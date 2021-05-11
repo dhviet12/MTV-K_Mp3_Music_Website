@@ -40,8 +40,8 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public List<PlayList> findAllByUserUsername(String username) {
-        return playlistRepository.findAllByUserUsername(username);
+    public List<PlayList> findAllByAppUserUsername(String username) {
+        return playlistRepository.findAllByAppUserUsername(username);
     }
 
     @Override

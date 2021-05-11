@@ -15,7 +15,7 @@ public interface LikeSongRepository extends JpaRepository<LikeSong,Long> {
     @Query(value = "delete from like_song where song_id = ?1 ; ", nativeQuery = true)
     void deleteLikeSong (Long sId);
 
-    @Query(value = "select count(user_id) as 'total_like' from like_song where song_id= ?1 group by song_id ;",nativeQuery = true)
+    @Query(value = "select count(app_user_id) as 'total_like' from like_song where song_id= ?1 group by song_id ;",nativeQuery = true)
     int showTotalLikeOfSong(Long sId);
 
 

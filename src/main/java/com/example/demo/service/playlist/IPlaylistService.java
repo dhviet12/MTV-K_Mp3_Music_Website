@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IPlaylistService extends IService<PlayList> {
 
-    List<PlayList> findAllByUserUsername(String username);
+    List<PlayList> findAllByAppUserUsername(String username);
 
     PlayList addSongToPlaylist(Long idSong, Long idPlaylist);
 
