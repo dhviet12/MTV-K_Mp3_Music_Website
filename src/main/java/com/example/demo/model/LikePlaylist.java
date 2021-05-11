@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
+
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ public class LikePlaylist {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     private PlayList playList;
@@ -19,12 +20,12 @@ public class LikePlaylist {
     public LikePlaylist() {
     }
 
-    public LikePlaylist(User user, PlayList playList) {
+    public LikePlaylist(AppUser user, PlayList playList) {
         this.user = user;
         this.playList = playList;
     }
 
-    public LikePlaylist(Long id, User user, PlayList playList) {
+    public LikePlaylist(Long id, AppUser user, PlayList playList) {
         this.id = id;
         this.user = user;
         this.playList = playList;
@@ -38,11 +39,11 @@ public class LikePlaylist {
         this.id = id;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 
