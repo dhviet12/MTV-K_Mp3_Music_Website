@@ -51,11 +51,12 @@ public class PlaylistService implements IPlaylistService {
         List<Song> songs = playlist.getSongs();
         if (songs.contains(song)) {
             return null;
+        } else {
+            songs.add(song);
+            playlist.setSongs(songs);
+            playlistRepository.save(playlist);
+            return playlist;
         }
-        songs.add(song);
-        playlist.setSongs(songs);
-        playlistRepository.save(playlist);
-        return playlist;
     }
 
     @Override
