@@ -29,9 +29,9 @@ public class Song {
     private Category category;
     @ManyToOne
     private PlayList playList;
-    @OneToMany
-    @JsonIgnore
-    private List<Like> likes;
+//    @OneToMany
+//    @JsonIgnore
+//    private List<Like> likes;
     @OneToMany
     @JsonIgnore
     private List<CommentOfSong> comments;
@@ -39,7 +39,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, String singer, User createBy, Category category, PlayList playList, List<Like> likes, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, String singer, User createBy, Category category, PlayList playList, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
@@ -53,7 +53,6 @@ public class Song {
         CreateBy = createBy;
         this.category = category;
         this.playList = playList;
-        this.likes = likes;
         this.comments = comments;
     }
 
@@ -161,13 +160,13 @@ public class Song {
         this.playList = playList;
     }
 
-    public List<Like> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Like> likes) {
-        this.likes = likes;
-    }
+//    public List<Like> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Like> likes) {
+//        this.likes = likes;
+//    }
 
     public List<CommentOfSong> getComments() {
         return comments;
