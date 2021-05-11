@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,21 +18,21 @@ public class PlayList {
     private Timestamp timeCreate;
     private String description;
     @ManyToOne
-    private User user;
+    private AppUser appUser;
     private Timestamp timeUpdate;
     private Long view;
 
     public PlayList() {
     }
 
-    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, User user, Timestamp timeUpdate, Long view) {
+    public PlayList(Long id, String name, List<Song> songs, String kindOfMusic, Timestamp timeCreate, String description, AppUser appUser, Timestamp timeUpdate, Long view) {
         this.id = id;
         this.name = name;
         this.songs = songs;
         this.kindOfMusic = kindOfMusic;
         this.timeCreate = timeCreate;
         this.description = description;
-        this.user = user;
+        this.appUser = appUser;
         this.timeUpdate = timeUpdate;
         this.view = view;
     }
@@ -85,12 +85,12 @@ public class PlayList {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Timestamp getTimeUpdate() {

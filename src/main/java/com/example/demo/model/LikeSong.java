@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 
 import javax.persistence.*;
 
@@ -11,7 +11,7 @@ public class LikeSong {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
     private Song song;
@@ -19,14 +19,14 @@ public class LikeSong {
     public LikeSong() {
     }
 
-    public LikeSong(Long id, User user, Song song) {
+    public LikeSong(Long id, AppUser appUser, Song song) {
         this.id = id;
-        this.user = user;
+        this.appUser = appUser;
         this.song = song;
     }
 
-    public LikeSong(User user, Song song) {
-        this.user = user;
+    public LikeSong(AppUser appUser, Song song) {
+        this.appUser = appUser;
         this.song = song;
     }
 
@@ -38,12 +38,12 @@ public class LikeSong {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Song getSong() {

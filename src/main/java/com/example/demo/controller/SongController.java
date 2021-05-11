@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.PlayList;
 import com.example.demo.model.Song;
-import com.example.demo.model.user.User;
 import com.example.demo.service.ISongService;
 import com.example.demo.service.playlist.IPlaylistService;
 import com.example.demo.service.user.IUserService;

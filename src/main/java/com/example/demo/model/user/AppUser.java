@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,15 +42,15 @@ public class User {
     @OneToMany
     private List<PlayList> playList;
 
-    public User() {
+    public AppUser() {
     }
 
-    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password) {
+    public AppUser(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(Long id, @NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone, String avatar, Set<Role> roles, List<PlayList> playList) {
+    public AppUser(Long id, @NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone, String avatar, Set<Role> roles, List<PlayList> playList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -63,13 +63,13 @@ public class User {
         this.playList = playList;
     }
 
-    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, String phone) {
+    public AppUser(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, String phone) {
         this.username = username;
         this.password = password;
         this.phone = phone;
     }
 
-    public User(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone) {
+    public AppUser(@NotBlank @Size(min = 6, max = 20) String username, @NotBlank @Size(min = 8, max = 30) String password, @NotBlank String fullName, @Size(max = 60) String address, @Email String email, String phone) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;

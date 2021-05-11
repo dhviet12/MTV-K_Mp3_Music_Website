@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,20 +32,20 @@ public class UserPrinciple implements UserDetails {
         this.roles = roles;
     }
 
-    public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
+    public static UserPrinciple build(AppUser appUser) {
+        List<GrantedAuthority> authorities = appUser.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName())
         ).collect(Collectors.toList());
 
         return new UserPrinciple(
-                user.getId(),
-                user.getUsername(),
-                user.getPassword(),
-                user.getFullName(),
-                user.getAddress(),
-                user.getEmail(),
-                user.getPhone(),
-                user.getAvatar(),
+                appUser.getId(),
+                appUser.getUsername(),
+                appUser.getPassword(),
+                appUser.getFullName(),
+                appUser.getAddress(),
+                appUser.getEmail(),
+                appUser.getPhone(),
+                appUser.getAvatar(),
                 authorities
         );
     }

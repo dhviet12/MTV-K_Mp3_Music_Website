@@ -1,7 +1,7 @@
 package com.example.demo.controller.comment;
 
 import com.example.demo.model.comment.CommentOfPlayList;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.service.commentPlayList.ICommentPlayListService;
 import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +51,8 @@ public class CommentPlayListController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CommentOfPlayList>delete(@PathVariable Long id){
         CommentOfPlayList commentOfPlayList = commentPlayListService.findById(id);
-        User user = userService.getCurrentUser();
-        String username = user.getUsername();
+        AppUser appUser = userService.getCurrentUser();
+        String username = appUser.getUsername();
         boolean us = username.equalsIgnoreCase(commentOfPlayList.getCreatedBy().getUsername());
         if (us){
            commentPlayListService.delete(id);

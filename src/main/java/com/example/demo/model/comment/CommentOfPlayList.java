@@ -1,9 +1,7 @@
 package com.example.demo.model.comment;
 
 import com.example.demo.model.PlayList;
-import com.example.demo.model.Song;
-import com.example.demo.model.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.model.user.AppUser;
 
 import javax.persistence.*;
 
@@ -14,14 +12,14 @@ public class CommentOfPlayList {
     private Long id;
     private String content;
     @ManyToOne
-    private User createdBy;
+    private AppUser createdBy;
     @ManyToOne
     private PlayList playList;
 
     public CommentOfPlayList() {
     }
 
-    public CommentOfPlayList(Long id, String content, User createdBy, PlayList playList) {
+    public CommentOfPlayList(Long id, String content, AppUser createdBy, PlayList playList) {
         this.id = id;
         this.content = content;
         this.createdBy = createdBy;
@@ -44,11 +42,11 @@ public class CommentOfPlayList {
         this.content = content;
     }
 
-    public User getCreatedBy() {
+    public AppUser getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(AppUser createdBy) {
         this.createdBy = createdBy;
     }
 

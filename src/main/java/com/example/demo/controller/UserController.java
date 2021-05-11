@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.model.user.response.ResponseMessage;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,9 @@ public class UserController {
     }
 
     @PutMapping("/profile/{id}")
-    public ResponseEntity<User> editProFile(@PathVariable Long id, @RequestBody User user){
-        user.setId(id);
-        return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
+    public ResponseEntity<AppUser> editProFile(@PathVariable Long id, @RequestBody AppUser appUser){
+        appUser.setId(id);
+        return new ResponseEntity<>(userService.save(appUser), HttpStatus.OK);
     }
 
 

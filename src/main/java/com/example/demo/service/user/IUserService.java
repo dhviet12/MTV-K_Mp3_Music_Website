@@ -1,15 +1,13 @@
 package com.example.demo.service.user;
 
-import com.example.demo.model.user.User;
-
-import java.util.Optional;
+import com.example.demo.model.user.AppUser;
 
 public interface IUserService {
-    User save(User user);
+    AppUser save(AppUser appUser);
 
-    User findById(Long id);
+    AppUser findById(Long id);
 
-    Iterable<User> findAll();
+    Iterable<AppUser> findAll();
 
     void remove(Long id);
 
@@ -17,9 +15,9 @@ public interface IUserService {
 
     boolean existsByEmail (String email);
 
-    User findUserByUserName(String username);
+    AppUser findUserByUserName(String username);
 
-    User getCurrentUser();
+    AppUser getCurrentUser();
 //    User findByUsername(String username);
 
 }

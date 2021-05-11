@@ -1,7 +1,7 @@
 package com.example.demo.controller.comment;
 
 import com.example.demo.model.comment.CommentOfSong;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.service.SongServiceImp;
 import com.example.demo.service.commentSong.ICommentSongService;
 import com.example.demo.service.user.IUserService;
@@ -56,8 +56,8 @@ public class CommentSongController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CommentOfSong>delete(@PathVariable Long id){
         CommentOfSong commentOfSong = commentSongService.findById(id);
-        User user = userService.getCurrentUser();
-        String username = user.getUsername();
+        AppUser appUser = userService.getCurrentUser();
+        String username = appUser.getUsername();
         boolean us = username.equalsIgnoreCase(commentOfSong.getCreatedBy().getUsername());
         if (us){
             commentSongService.delete(id);

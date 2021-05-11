@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.model.comment.CommentOfSong;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,7 +24,7 @@ public class Song {
     private Long numberOfView;
     private String singer;
     @ManyToOne
-    private User CreateBy;
+    private AppUser CreateBy;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -39,7 +39,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, String singer, User createBy, Category category, PlayList playList, List<CommentOfSong> comments) {
+    public Song(Long id, String nameSong, String description, String fileMp3, String fileImage, String author, Timestamp createdTime, Timestamp updatedTime, Long numberOfView, String singer, AppUser createBy, Category category, PlayList playList, List<CommentOfSong> comments) {
         this.id = id;
         this.nameSong = nameSong;
         this.description = description;
@@ -136,11 +136,11 @@ public class Song {
         this.singer = singer;
     }
 
-    public User getCreateBy() {
+    public AppUser getCreateBy() {
         return CreateBy;
     }
 
-    public void setCreateBy(User createBy) {
+    public void setCreateBy(AppUser createBy) {
         CreateBy = createBy;
     }
 

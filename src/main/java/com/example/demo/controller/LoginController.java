@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.user.Role;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.model.user.request.LoginForm;
 import com.example.demo.model.user.request.SignUpForm;
 import com.example.demo.model.user.UserPrinciple;
@@ -54,10 +54,10 @@ public class LoginController {
 
         String jwt = jwtTokenProvider.generateJwtToken(authentication);
         UserPrinciple userDetails = (UserPrinciple) authentication.getPrincipal();
-        User currentUser = userService.getCurrentUser();
+        AppUser currentAppUser = userService.getCurrentUser();
 
 
-        return ResponseEntity.ok(new JwtResponse(currentUser.getId(), jwt, currentUser.getUsername(),userDetails.getPassword(), userDetails.getEmail(),userDetails.getFullName(), userDetails.getAddress(), userDetails.getPhone(), userDetails.getAvatar(),
+        return ResponseEntity.ok(new JwtResponse(currentAppUser.getId(), jwt, currentAppUser.getUsername(),userDetails.getPassword(), userDetails.getEmail(),userDetails.getFullName(), userDetails.getAddress(), userDetails.getPhone(), userDetails.getAvatar(),
                 userDetails.getAuthorities()
         ));
     }
@@ -78,7 +78,7 @@ public class LoginController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getUsername(), signUpRequest.getPassword(), signUpRequest.getFullName(), signUpRequest.getAddress(), signUpRequest.getEmail(), signUpRequest.getPhone());
+        AppUser appUser = new AppUser(signUpRequest.getUsername(), signUpRequest.getPassword(), signUpRequest.getFullName(), signUpRequest.getAddress(), signUpRequest.getEmail(), signUpRequest.getPhone());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         strRoles.forEach(role -> {
@@ -94,8 +94,8 @@ public class LoginController {
                     roles.add(userRole);
             }
         });
-        user.setRoles(roles);
-        userService.save(user);
+        appUser.setRoles(roles);
+        userService.save(appUser);
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 
     }

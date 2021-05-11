@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.PlayList;
-import com.example.demo.model.Song;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.service.playlist.PlaylistService;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +81,10 @@ public class PlaylistController {
 
     @PostMapping("/user/create/{username}")
     public ResponseEntity<PlayList> createNewPlayListByUser(@RequestBody PlayList playList, @PathVariable String username) {
-        User user = userService.findUserByUserName(username);
+        AppUser appUser = userService.findUserByUserName(username);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         playList.setTimeCreate(timestamp);
-        playList.setUser(user);
+        playList.setUser(appUser);
         return new ResponseEntity<>(playlistService.save(playList), HttpStatus.CREATED);
     }
 
@@ -106,10 +105,10 @@ public class PlaylistController {
         if (playlistService.findById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            User user = userService.findUserByUserName(username);
+            AppUser appUser = userService.findUserByUserName(username);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             playList.setTimeUpdate(timestamp);
-            playList.setUser(user);
+            playList.setUser(appUser);
             playlistService.save(playList);
             return new ResponseEntity<>(playList, HttpStatus.OK);
         }

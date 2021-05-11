@@ -1,5 +1,5 @@
 package com.example.demo.service.user;
-import com.example.demo.model.user.User;
+import com.example.demo.model.user.AppUser;
 import com.example.demo.model.user.UserPrinciple;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.security.Principal;
-import java.util.Optional;
 
 
 @Service
@@ -22,22 +20,22 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
+        AppUser appUser = userRepository.findByUsername(username);
+        if (appUser == null) {
             throw new UsernameNotFoundException(username);
         }
-        return UserPrinciple.build(user);
+        return UserPrinciple.build(appUser);
     }
     @Override
-    public User save(User user) {
-       return userRepository.save(user);
+    public AppUser save(AppUser appUser) {
+       return userRepository.save(appUser);
     }
     @Override
-    public User findById(Long id) {
+    public AppUser findById(Long id) {
         return userRepository.findUserById(id);
     }
     @Override
-    public Iterable<User> findAll() {
+    public Iterable<AppUser> findAll() {
         return userRepository.findAll();
     }
     @Override
@@ -55,13 +53,13 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public User findUserByUserName(String username) {
+    public AppUser findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
 
 
-    public User getCurrentUser() {
-        User user;
+    public AppUser getCurrentUser() {
+        AppUser appUser;
         String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -70,8 +68,8 @@ public class UserService implements IUserService, UserDetailsService {
         } else {
             userName = principal.toString();
         }
-        user = this.findUserByUserName(userName);
-        return user;
+        appUser = this.findUserByUserName(userName);
+        return appUser;
     }
 
 
